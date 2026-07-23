@@ -1,6 +1,6 @@
 ---
 title: Odyssey of the Mind — Primary Robotics Coach, Texas State Champion & World Finals Top 10
-summary: Primary robotics coach for River Oaks Elementary Team A (#3999) — Division I, Problem 4 "Life's a Ball!". Team placed 1st at the 2026 Texas State Odyssey of the Mind and 7th at the 2026 World Finals.
+summary: Primary robotics coach for River Oaks Elementary Team A (#3999) — I taught the team to build the robot in their solution. 1st at the 2026 Texas State Odyssey of the Mind; 7th at the 2026 World Finals.
 category: teaching-and-leadership
 featured: true
 year: "2025 — 2026 Season"
@@ -11,14 +11,15 @@ collaborators:
 technologies:
   - VEXcode
 hardware:
-  - VEX robotics platform
+  - VEX IQ robotics
+  - Robot construction
   - Balsa-wood structure system
 process: |
-  Coached the robotics and technical elements incorporated into the team's competition solution — Odyssey of the Mind Problem 4, "Life's a Ball!". The students created a theatrical performance in which a party guest character explained the effects of ball-and-structure collisions using original terminology the team invented. Central to the performance: a balsa-wood structure the team designed and built to support weight while different balls were rolled into it.
+  Coached the robotics and technical elements incorporated into the team's competition solution — Odyssey of the Mind Problem 4, "Life's a Ball!". My primary contribution was teaching the students how to design and build the robot they incorporated into their solution, drawing on the VEX IQ robotics I build and coach — not only the embedded audio system. Alongside the robot, the team designed and built a balsa-wood structure to support weight while different balls were rolled into it, and wrote an original theatrical performance around it.
 challenges: |
   Odyssey of the Mind rules strictly limit outside adult input on the students' solution. The coaching work has to be about sharpening the students' own reasoning — asking better questions, holding schedule and scope, and letting the team own every design decision — not about designing the device for them.
 solution: |
-  Weekly sessions with the team focused on the robotics and technical elements of their solution. The team built and defended their own balsa-wood ball structure, wrote and performed their own script, and iterated their design between the regional, state, and World Finals rounds.
+  Weekly sessions with the team focused on the robotics and technical elements of their solution. I taught the students to build the robot themselves; they also built and defended their own balsa-wood ball structure, wrote and performed their own script, and iterated the whole design between the regional, state, and World Finals rounds.
 results: |
   - 1st place · 2026 Texas State Odyssey of the Mind Competition
   - Advanced to the 2026 Odyssey of the Mind World Finals
@@ -45,11 +46,11 @@ order: 5
 
 ## My role, specifically
 
-I was the team's **primary robotics coach** — brought on through iCode Memorial to coach the robotics and technical elements the students incorporated into their competition solution. Odyssey of the Mind separates the _officially registered head coach_ from the technical / robotics coaching role. This case study documents the robotics coaching, not the overall Odyssey head-coach role.
+I was the team's **primary robotics coach** — brought on through iCode Memorial to coach the robotics and technical elements the students incorporated into their competition solution. My main contribution was **teaching the students how to build the robot** in their solution, drawing on the VEX IQ robotics I build and coach. It was not limited to the embedded audio system. Odyssey of the Mind separates the _officially registered head coach_ from the technical / robotics coaching role; this case study documents the robotics coaching.
 
 ## What the students built
 
-The team built an original theatrical performance around throwing a party — a "ball." The technical centerpiece: a **balsa-wood structure** the students designed and built to support weight while different balls were rolled into it. An original "ball" character and a party-guest character narrated the effects of the collisions using terminology the team invented.
+Guided by my robotics coaching, the team **built the robot** incorporated into their solution. They also designed and built a **balsa-wood structure** that supported weight while different balls were rolled into it, and wrote an original theatrical performance — a party, a "ball" — in which a party-guest character narrated the effects of the collisions using terminology the team invented.
 
 ## Verified results
 
