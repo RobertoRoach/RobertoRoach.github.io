@@ -1,596 +1,195 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import CircuitMotif from "@/components/CircuitMotif.astro";
 import ProjectCard from "@/components/ProjectCard.astro";
-import { SITE } from "@/lib/site";
+import { SITE, RAR_PRACTICE, EXPERIENCE } from "@/lib/site";
 
 const all = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
-
 const bySlug = (s: string) => all.find((p) => p.slug === s);
 
-const rarStudio = bySlug("rar-technologies");
 const rarPortfolioSite = bySlug("rar-portfolio-site");
 const icode = bySlug("icode-memorial");
-const vexIq = bySlug("vex-iq-coaching-judging");
 const arduinoAudio = bySlug("arduino-embedded-audio");
 const vexV5 = bySlug("vex-v5-basketball-robot");
-const arduinoOther = bySlug("arduino-ir-vehicle-plant-watering");
 const omCoaching = bySlug("om-worlds-coaching");
-const rocketry = bySlug("model-rocketry");
 
-const roboticsSelection = [arduinoAudio, vexV5, arduinoOther].filter(
-  (p): p is CollectionEntry<"projects"> => p !== undefined,
-);
-const rarWebProducts = [rarPortfolioSite].filter(
+// A tight selected-work set for the homepage — the full set lives on /work/.
+const selected = [rarPortfolioSite, arduinoAudio, vexV5, icode].filter(
   (p): p is CollectionEntry<"projects"> => p !== undefined,
 );
 ---
 
 <BaseLayout title="Founder · Engineer · Robotics Educator">
-  {/* ==================== 1 · HERO ==================== */}
-  <header class="relative overflow-hidden px-[var(--gutter)] pb-24 pt-36 md:pb-32 md:pt-44">
-    <div
-      class="pointer-events-none absolute inset-0 opacity-70"
-      style="background:radial-gradient(1000px 620px at 12% -10%, rgba(225,6,0,0.09), transparent 60%), radial-gradient(900px 540px at 100% 20%, rgba(225,6,0,0.05), transparent 60%);"
-      aria-hidden="true"
-    >
-    </div>
-    <div class="bg-grid absolute inset-0 opacity-60" aria-hidden="true"></div>
-
-    <div
-      class="relative z-10 mx-auto grid max-w-content grid-cols-1 items-end gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,420px)] lg:gap-24"
-    >
-      <div>
-        <div class="mb-10 flex flex-wrap items-baseline gap-4">
-          <span class="mono-label flex items-center gap-2.5">
-            <span class="status-led"></span>
-            R.R / 01 · System online
-          </span>
-          <span class="mono-label text-graphite-400">
-            {SITE.location} · {SITE.coords}
-          </span>
+  {/* ==================== HERO ==================== */}
+  <header class="px-[var(--gutter)] pt-36 md:pt-44">
+    <div class="mx-auto max-w-content">
+      <div
+        class="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.4fr_0.6fr] lg:gap-16"
+      >
+        <div>
+          <div class="mono-label mb-8 flex items-center gap-2.5 text-signal-500">
+            RAR Technologies / {SITE.location}
+          </div>
+          <h1
+            class="mb-8 font-display text-[clamp(3rem,9vw,7rem)] font-extrabold leading-[0.92] tracking-tightest"
+          >
+            I build systems<br />that move, think,<br />and <span
+              class="text-signal-gradient">connect.</span
+            >
+          </h1>
+          <p class="mb-10 max-w-lg text-[17px] leading-[1.7] text-graphite-300">
+            Roberto Andrés Roach — founder of RAR Technologies, building websites, embedded
+            electronics, robotics systems, and the technical understanding behind them.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/work/" class="btn btn-primary">View selected work</a>
+            <a href="/contact/" class="btn">Contact</a>
+          </div>
         </div>
 
-        <h1
-          class="mb-8 font-display text-[clamp(3.2rem,10vw,7.5rem)] font-extrabold leading-[0.9] tracking-tightest"
+        <div
+          class="relative aspect-[3/4] overflow-hidden border border-graphite-800 bg-graphite-800 lg:aspect-auto lg:h-[420px]"
         >
-          I build <span class="text-signal-gradient">systems</span>
-          <br />that move,
-          <br />think, & connect.
-        </h1>
-
-        <p
-          class="mb-6 max-w-2xl font-display text-[clamp(1.15rem,2vw,1.55rem)] font-medium leading-[1.4] text-graphite-100"
-        >
-          Founder of <span class="text-signal-500">RAR Technologies</span>. Electrical engineering
-          student at <span class="text-signal-500">Penn State Behrend</span>. Robotics educator and
-          VEX IQ coach at <span class="text-signal-500">iCode Memorial</span>. Embedded-systems
-          developer.
-        </p>
-
-        <p class="mb-10 max-w-xl text-[17px] leading-[1.7] text-graphite-200">
-          I already build websites, repair electronics, teach engineering, coach robotics teams, and
-          develop embedded systems. Everything on this site is verified. Bilingual English and
-          Spanish. Based in {SITE.location}.
-        </p>
-
-        <div class="flex flex-wrap gap-3">
-          <a href="/work/" class="btn btn-primary">
-            <span>View selected work</span>
-            <span aria-hidden="true">→</span>
-          </a>
-          <a href="/contact/" class="btn">Get in touch</a>
+          <img
+            src="/images/roberto.png"
+            alt="Portrait of Roberto Andrés Roach"
+            loading="eager"
+            class="absolute inset-x-0 bottom-0 h-full w-full object-contain object-bottom"
+          />
         </div>
       </div>
-
-      <aside
-        class="relative border border-graphite-800 bg-graphite-800/50 p-6 backdrop-blur-sm"
-        style="border-radius:2px;"
-      >
-        <div
-          class="mb-4 flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-graphite-300"
-        >
-          <span class="text-signal-500">SIG / R.R · 01</span>
-          <span class="flex items-center gap-2">
-            <span class="status-led"></span>Live
-          </span>
-        </div>
-
-        <CircuitMotif variant="hero" class="mb-4" />
-
-        <dl
-          class="grid grid-cols-[1fr_auto] gap-x-4 gap-y-1.5 font-mono text-[11px] uppercase tracking-widest"
-        >
-          <dt class="text-graphite-400">Studio</dt>
-          <dd class="text-signal-500">RAR Technologies</dd>
-          <dt class="text-graphite-400">Teaches at</dt>
-          <dd class="text-graphite-100">iCode Memorial</dd>
-          <dt class="text-graphite-400">Coach</dt>
-          <dd class="text-graphite-100">TX State · OM 2026</dd>
-          <dt class="text-graphite-400">Stack</dt>
-          <dd class="text-graphite-100">EE · Embedded</dd>
-          <dt class="text-graphite-400">Lang</dt>
-          <dd class="text-graphite-100">EN · ES</dd>
-          <dt class="text-graphite-400">Next</dt>
-          <dd class="text-graphite-100">PSU Behrend '30</dd>
-        </dl>
-      </aside>
     </div>
   </header>
 
-  {/* ==================== 2 · RAR TECHNOLOGIES — FEATURED ==================== */}
-  {
-    rarStudio && (
-      <>
-        <div class="divider" aria-hidden="true">
-          <span class="tick">◆</span>
-          <span>R · Studio</span>
-          <span class="line" />
-          <span>RAR Technologies</span>
-        </div>
-        <section id="rar" class="px-[var(--gutter)] py-24 md:py-28">
-          <div class="mx-auto max-w-content">
-            <div class="mb-12 grid grid-cols-1 items-baseline gap-8 md:grid-cols-[240px_1fr]">
-              <div class="mono-label reveal text-signal-500">R.01 · The studio</div>
-              <div class="reveal reveal-1">
-                <h2 class="mb-4 font-display text-[clamp(2.4rem,5.5vw,4.5rem)] font-bold leading-[1] tracking-tightest">
-                  RAR Technologies
-                </h2>
-                <p class="max-w-2xl font-display text-[clamp(1.05rem,1.6vw,1.35rem)] font-medium leading-[1.4] text-graphite-100">
-                  The studio I founded in 2023 — website design, technology-product development,
-                  electronics repair, and embedded work for local Houston clients.
-                </p>
-              </div>
+  {/* ==================== 01 · RAR TECHNOLOGIES ==================== */}
+  <section id="rar" class="px-[var(--gutter)] pt-28 md:pt-36">
+    <div class="mx-auto max-w-content border-t border-graphite-800 pt-14">
+      <div class="mono-label mb-6 text-signal-500">01 / Founder-led practice</div>
+      <h2
+        class="mb-6 font-display text-[clamp(2.2rem,5vw,4rem)] font-bold leading-[1] tracking-tightest"
+      >
+        RAR Technologies LLC
+      </h2>
+      <p class="mb-14 max-w-2xl text-[17px] leading-[1.7] text-graphite-300">
+        Founded in 2023 — a single studio combining web development, technology-product
+        development, electronics repair, hardware diagnostics, and bilingual client
+        communication.
+      </p>
+
+      <div class="grid grid-cols-1 gap-px overflow-hidden border border-graphite-800 bg-graphite-800 sm:grid-cols-3">
+        {
+          RAR_PRACTICE.map((p) => (
+            <div class="bg-graphite-900 p-7">
+              <div class="mono-label mb-3 text-signal-500">{p.label}</div>
+              <p class="text-[15px] leading-[1.6] text-graphite-300">{p.body}</p>
             </div>
-
-            <div class="reveal">
-              <ProjectCard project={rarStudio} variant="featured" index={0} />
-            </div>
-
-            <div class="mt-16 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                "Website design & development",
-                "Technology-product development",
-                "Board-level electronics repair",
-                "Embedded electronics",
-                "Hardware diagnostics",
-                "Software troubleshooting",
-                "Technical documentation",
-                "Bilingual EN · ES intake",
-              ].map((service) => (
-                <div class="reveal border-l border-signal-500 bg-graphite-800/50 p-5">
-                  <div class="mono-label mb-2 text-graphite-300">Service</div>
-                  <div class="font-display text-lg font-semibold leading-tight text-graphite-50">
-                    {service}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </>
-    )
-  }
-
-  {/* ==================== 3 · FEATURED RAR WEBSITES / PRODUCTS ==================== */}
-  {
-    rarWebProducts.length > 0 && (
-      <>
-        <div class="divider" aria-hidden="true">
-          <span class="tick">◆</span>
-          <span>W · RAR web & product</span>
-          <span class="line" />
-          <span>{String(rarWebProducts.length).padStart(2, "0")} case study</span>
-        </div>
-        <section id="rar-web-and-product" class="px-[var(--gutter)] py-24 md:py-28">
-          <div class="mx-auto max-w-content">
-            <div class="mb-12 grid grid-cols-1 items-baseline gap-8 md:grid-cols-[240px_1fr]">
-              <div class="mono-label reveal">W.01 · RAR delivery</div>
-              <h2 class="reveal reveal-1 font-display text-[clamp(2.2rem,4.5vw,3.6rem)] font-bold leading-[1.02] tracking-tightest">
-                Websites and technology products delivered through RAR.
-              </h2>
-            </div>
-
-            <div class="flex flex-col gap-20">
-              {rarWebProducts.map((p, i) => (
-                <div class="reveal">
-                  <ProjectCard project={p} variant="featured" index={i} />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </>
-    )
-  }
-
-  {/* ==================== 4 · iCODE + VEX IQ COACHING ==================== */}
-  {
-    icode && (
-      <>
-        <div class="divider" aria-hidden="true">
-          <span class="tick">◆</span>
-          <span>T · iCode Memorial</span>
-          <span class="line" />
-          <span>100+ students</span>
-        </div>
-        <section id="icode" class="px-[var(--gutter)] py-24 md:py-28">
-          <div class="mx-auto max-w-content">
-            <div class="mb-12 grid grid-cols-1 items-baseline gap-8 md:grid-cols-[240px_1fr]">
-              <div class="mono-label reveal">T.01 · Teaching</div>
-              <h2 class="reveal reveal-1 font-display text-[clamp(2.2rem,4.5vw,3.6rem)] font-bold leading-[1.02] tracking-tightest">
-                iCode Memorial — instructor and VEX IQ coach.
-              </h2>
-            </div>
-
-            <div class="reveal">
-              <ProjectCard project={icode} variant="featured" index={0} />
-            </div>
-
-            {vexIq && (
-              <div class="reveal reveal-1 mt-16">
-                <ProjectCard project={vexIq} variant="grid" index={1} />
-              </div>
-            )}
-          </div>
-        </section>
-      </>
-    )
-  }
-
-  {/* ==================== 5 · ROBOTICS + EMBEDDED SYSTEMS ==================== */}
-  {
-    roboticsSelection.length > 0 && (
-      <>
-        <div class="divider" aria-hidden="true">
-          <span class="tick">◆</span>
-          <span>P · Robotics & embedded</span>
-          <span class="line" />
-          <span>{String(roboticsSelection.length).padStart(2, "0")} projects</span>
-        </div>
-        <section id="robotics" class="px-[var(--gutter)] py-24 md:py-28">
-          <div class="mx-auto max-w-content">
-            <div class="mb-12 grid grid-cols-1 items-baseline gap-8 md:grid-cols-[240px_1fr]">
-              <div class="mono-label reveal">P.01 · Engineering</div>
-              <h2 class="reveal reveal-1 font-display text-[clamp(2.2rem,4.5vw,3.6rem)] font-bold leading-[1.02] tracking-tightest">
-                Selected robotics and embedded-systems work.
-              </h2>
-            </div>
-
-            {arduinoAudio && (
-              <div class="reveal mb-20">
-                <ProjectCard project={arduinoAudio} variant="featured" index={0} />
-              </div>
-            )}
-
-            <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
-              {[vexV5, arduinoOther]
-                .filter((p): p is CollectionEntry<"projects"> => p !== undefined)
-                .map((p, i) => (
-                  <div class="reveal">
-                    <ProjectCard project={p} variant="grid" index={i + 1} />
-                  </div>
-                ))}
-            </div>
-          </div>
-        </section>
-      </>
-    )
-  }
-
-  {/* ==================== 6 · ELECTRICAL ENGINEERING (capabilities) ==================== */}
-  <div class="divider" aria-hidden="true">
-    <span class="tick">◆</span>
-    <span>E · Electrical engineering</span>
-    <span class="line"></span>
-    <span>Capabilities</span>
-  </div>
-  <section id="ee" class="px-[var(--gutter)] py-24 md:py-28">
-    <div class="mx-auto max-w-content">
-      <div class="mb-12 grid grid-cols-1 items-baseline gap-8 md:grid-cols-[240px_1fr]">
-        <div class="mono-label reveal">E.01 · Discipline</div>
-        <h2
-          class="reveal reveal-1 font-display text-[clamp(2.2rem,4.5vw,3.6rem)] font-bold leading-[1.02] tracking-tightest"
-        >
-          Electrical engineering — capabilities, not just coursework.
-        </h2>
-      </div>
-
-      <div class="grid grid-cols-1 gap-8 border-t border-graphite-800 pt-10 md:grid-cols-2">
-        <div class="reveal">
-          <div class="mono-label mb-4 flex items-center gap-3 text-graphite-300">
-            <span class="status-led"></span>Hardware
-          </div>
-          <ul class="grid grid-cols-2 gap-x-4 gap-y-2 text-[15px] text-graphite-100">
-            <li>Circuit design</li>
-            <li>Breadboards</li>
-            <li>Microcontrollers</li>
-            <li>Motors</li>
-            <li>Sensors</li>
-            <li>Embedded systems</li>
-            <li>Electronics repair</li>
-            <li>Board-level diagnostics</li>
-            <li>Soldering &amp; rework</li>
-            <li>Autonomous control</li>
-          </ul>
-        </div>
-        <div class="reveal reveal-1">
-          <div class="mono-label mb-4 flex items-center gap-3 text-graphite-300">
-            <span class="status-led dim"></span>Software
-          </div>
-          <ul class="grid grid-cols-2 gap-x-4 gap-y-2 text-[15px] text-graphite-100">
-            <li>Python</li>
-            <li>Java</li>
-            <li>C++</li>
-            <li>Lua</li>
-            <li>HTML / CSS / JavaScript</li>
-            <li>TypeScript</li>
-            <li>Arduino (C++)</li>
-            <li>VEXcode</li>
-            <li>Astro</li>
-            <li>Tailwind CSS</li>
-          </ul>
-        </div>
+          ))
+        }
       </div>
     </div>
   </section>
 
-  {/* ==================== 7 · ODYSSEY OF THE MIND ==================== */}
+  {/* ==================== 02 · SELECTED WORK ==================== */}
+  <section id="work" class="px-[var(--gutter)] pt-28 md:pt-36">
+    <div class="mx-auto max-w-content border-t border-graphite-800 pt-14">
+      <div class="mb-12 flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <div class="mono-label mb-6 text-signal-500">02 / Selected work</div>
+          <h2
+            class="font-display text-[clamp(2.2rem,5vw,4rem)] font-bold leading-[1] tracking-tightest"
+          >
+            Selected technical work.
+          </h2>
+        </div>
+        <a
+          href="/work/"
+          class="mono-label text-graphite-300 transition-colors hover:text-signal-400"
+        >
+          All work →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        {
+          selected.map((p, i) => (
+            <div class="reveal">
+              <ProjectCard project={p} variant="grid" index={i} />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* ==================== 03 · RECOGNITION ==================== */}
   {
     omCoaching && (
-      <>
-        <div class="divider" aria-hidden="true">
-          <span class="tick">◆</span>
-          <span>A · OM 2026 · Texas State Champion + Worlds 7th</span>
-          <span class="line" />
+      <section id="recognition" class="px-[var(--gutter)] pt-28 md:pt-36">
+        <div class="mx-auto max-w-content border-t border-graphite-800 pt-14">
+          <div class="mono-label mb-6 text-signal-500">03 / Recognition</div>
+          <a href={`/work/${omCoaching.slug}/`} class="group block">
+            <h2 class="mb-5 max-w-4xl font-display text-[clamp(2rem,4.5vw,3.4rem)] font-bold leading-[1.05] tracking-tightest transition-colors group-hover:text-signal-400">
+              Texas State Champion &amp; World Finals Top&nbsp;10 — Odyssey of the Mind, 2026.
+            </h2>
+            <p class="max-w-2xl text-[17px] leading-[1.7] text-graphite-300">
+              Primary robotics coach for River Oaks Elementary Team A #3999. 1st at the 2026 Texas
+              State competition; 7th at the World Finals.
+              <span class="mono-label ml-2 text-graphite-400 group-hover:text-signal-400">
+                Read the case study →
+              </span>
+            </p>
+          </a>
         </div>
-        <section id="om-worlds" class="relative overflow-hidden px-[var(--gutter)] py-24 md:py-32">
-          <div
-            class="pointer-events-none absolute inset-0 opacity-60"
-            style="background:radial-gradient(700px 400px at 20% 30%, rgba(225,6,0,0.09), transparent 60%);"
-            aria-hidden="true"
-          />
-          <div class="relative mx-auto max-w-content">
-            <div class="mb-12 grid grid-cols-1 items-baseline gap-8 md:grid-cols-[240px_1fr]">
-              <div class="mono-label reveal text-signal-500">A.01 · Achievement</div>
-              <h2 class="reveal reveal-1 font-display text-[clamp(2.2rem,5vw,3.8rem)] font-bold leading-[1.02] tracking-tightest">
-                Texas State Champion. World Finals Top 10.
-              </h2>
-            </div>
-
-            <div class="reveal">
-              <ProjectCard project={omCoaching} variant="featured" index={0} />
-            </div>
-
-            {rocketry && (
-              <div class="reveal reveal-1 mt-16">
-                <ProjectCard project={rocketry} variant="grid" index={1} />
-              </div>
-            )}
-          </div>
-        </section>
-      </>
+      </section>
     )
   }
 
-  {/* ==================== 8 · ABOUT / EXPERIENCE ==================== */}
-  <div class="divider" aria-hidden="true">
-    <span class="tick">◆</span>
-    <span>Ab · About</span>
-    <span class="line"></span>
-    <span>Ab.01</span>
-  </div>
-  <section id="about" class="px-[var(--gutter)] py-24 md:py-28">
-    <div
-      class="mx-auto grid max-w-content grid-cols-1 items-center gap-14 lg:grid-cols-[0.85fr_1fr] lg:gap-20"
-    >
-      <div
-        class="reveal relative aspect-[4/5] overflow-hidden border border-graphite-800 bg-graphite-800"
-      >
-        <div
-          class="absolute inset-x-0 top-0 z-10 flex items-center justify-between p-5 font-mono text-[10px] uppercase tracking-widest text-graphite-300"
-        >
-          <span class="text-signal-500">R.R / 01</span>
-          <span>Subject</span>
-        </div>
-        <img
-          src="/images/roberto.png"
-          alt="Portrait of Roberto Andrés Roach"
-          loading="lazy"
-          class="absolute inset-x-0 bottom-0 h-full w-full object-contain object-bottom"
-        />
-        <div
-          class="pointer-events-none absolute inset-0 z-[5] bg-gradient-to-t from-graphite-950/70 via-transparent to-transparent"
-          aria-hidden="true"
-        >
-        </div>
-        <div
-          class="absolute inset-x-0 bottom-0 z-10 flex items-center justify-between p-5 font-mono text-[10px] uppercase tracking-widest text-graphite-300"
-        >
-          <span>{SITE.location}</span>
-          <span class="flex items-center gap-2 text-signal-500"
-            ><span class="status-led"></span>Active</span
-          >
-        </div>
-      </div>
-
-      <div class="reveal reveal-1">
-        <div class="mono-label mb-4">Ab.01 · Short-form biography</div>
-        <h2
-          class="mb-6 font-display text-[clamp(2rem,4vw,3.2rem)] font-bold leading-[1.02] tracking-tightest"
-        >
-          A working <span class="text-signal-gradient">document.</span>
-        </h2>
-        <div class="space-y-4 text-[17px] leading-[1.75] text-graphite-100">
-          <p>
-            I founded <strong>RAR Technologies</strong> in 2023 — a single studio delivering website design,
-            technology-product development, and electronics repair to clients in Houston, in English and
-            Spanish.
-          </p>
-          <p>
-            I teach robotics, coding, AI, and electrical engineering at <strong
-              >iCode Memorial</strong
-            >, where I've taught more than a hundred elementary and middle-school students. I
-            coached the <strong>River Oaks Elementary #3999</strong> Odyssey of the Mind team to
-            <span class="text-signal-500">1st at Texas State</span> and
-            <span class="text-signal-500">7th at the 2026 World Finals</span>.
-          </p>
-          <p>
-            My first Arduino work was at eleven, in Argentina. In the fall I head to
-            <strong>Penn State Behrend</strong> for electrical engineering — class of 2030.
-          </p>
-        </div>
-        <div class="mt-8">
-          <a href="/about/" class="btn">Read the full about</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {/* ==================== 9 · EDUCATION + CAPABILITIES ==================== */}
-  <div class="divider" aria-hidden="true">
-    <span class="tick">◆</span>
-    <span>Ed · Education & stack</span>
-    <span class="line"></span>
-    <span>Ed.01</span>
-  </div>
-  <section id="education" class="px-[var(--gutter)] py-24 md:py-28">
-    <div class="mx-auto max-w-content">
-      <div class="mb-12 grid grid-cols-1 items-baseline gap-8 md:grid-cols-[240px_1fr]">
-        <div class="mono-label reveal">Ed.01 · Legend</div>
-        <h2
-          class="reveal reveal-1 font-display text-[clamp(2.2rem,4.5vw,3.6rem)] font-bold leading-[1.02] tracking-tightest"
-        >
-          Education, coursework, and the stack I run.
-        </h2>
-      </div>
-
-      <div class="grid grid-cols-1 gap-16 lg:grid-cols-[1fr_1.4fr]">
-        <div class="reveal">
-          <div class="mono-label mb-5 flex items-center gap-3 text-graphite-300">
-            <span class="status-led"></span>Higher education
-          </div>
-          <div class="mb-4 border-l border-signal-500 bg-graphite-800/50 p-6">
-            <div class="mono-label mb-2 text-graphite-300">Incoming</div>
-            <div class="mb-1 font-display text-2xl font-bold leading-tight text-graphite-50">
-              Penn State Behrend
-            </div>
-            <p class="text-sm text-graphite-300">Electrical Engineering · Class of 2030</p>
-          </div>
-          <div class="mb-4 border border-graphite-800 bg-graphite-800/40 p-6">
-            <div class="mono-label mb-2 text-graphite-300">Current</div>
-            <div class="mb-1 font-display text-2xl font-bold leading-tight text-graphite-50">
-              Stratford High School
-            </div>
-            <p class="text-sm text-graphite-300">Houston, TX · Class of 2026</p>
-          </div>
-          <p class="text-sm leading-relaxed text-graphite-300">
-            Additional structured coursework via Rice, Johns Hopkins, IBM, Google, and HKUST — see
-            the <a
-              href="/about/"
-              class="underline decoration-graphite-500 underline-offset-4 hover:text-signal-400"
-              >About page</a
-            >
-            for the full list.
-          </p>
-        </div>
-
-        <div class="reveal reveal-1">
-          <div class="mono-label mb-5 flex items-center gap-3 text-graphite-300">
-            <span class="status-led dim"></span>The stack
-          </div>
-          <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
-            <div>
-              <h4
-                class="mb-3 font-mono text-[11px] font-medium uppercase tracking-widest text-graphite-300"
-              >
-                Programming
-              </h4>
-              <div class="flex flex-wrap gap-2">
-                {
-                  [
-                    "Python",
-                    "Java",
-                    "C++",
-                    "Lua",
-                    "HTML / CSS / JS",
-                    "TypeScript",
-                    "VEXcode",
-                    "Arduino (C++)",
-                    "Astro",
-                    "Tailwind CSS",
-                  ].map((c) => (
-                    <span class="border border-graphite-700 bg-graphite-800 px-3 py-1.5 font-mono text-[11px] uppercase tracking-wider text-graphite-100 transition-colors hover:border-signal-500 hover:text-signal-400">
-                      {c}
-                    </span>
-                  ))
-                }
-              </div>
-            </div>
-            <div>
-              <h4
-                class="mb-3 font-mono text-[11px] font-medium uppercase tracking-widest text-graphite-300"
-              >
-                Hardware
-              </h4>
-              <div class="flex flex-wrap gap-2">
-                {
-                  [
-                    "Circuit design",
-                    "Breadboards",
-                    "Microcontrollers",
-                    "Motors",
-                    "Sensors",
-                    "Embedded systems",
-                    "Board-level repair",
-                    "Soldering & rework",
-                    "Autonomous control",
-                    "Model rocketry",
-                  ].map((c) => (
-                    <span class="border border-graphite-700 bg-graphite-800 px-3 py-1.5 font-mono text-[11px] uppercase tracking-wider text-graphite-100 transition-colors hover:border-signal-500 hover:text-signal-400">
-                      {c}
-                    </span>
-                  ))
-                }
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {/* ==================== 10 · CONTACT + RÉSUMÉ ==================== */}
-  <section
-    id="contact"
-    class="relative overflow-hidden px-[var(--gutter)] py-32 text-center md:py-40"
-  >
-    <div
-      class="pointer-events-none absolute inset-0"
-      style="background:radial-gradient(700px 380px at 50% 20%, rgba(225,6,0,0.12), transparent 60%), radial-gradient(700px 380px at 50% 80%, rgba(225,6,0,0.06), transparent 60%);"
-      aria-hidden="true"
-    >
-    </div>
-    <div class="bg-grid absolute inset-0 opacity-40" aria-hidden="true"></div>
-    <div class="relative mx-auto max-w-3xl">
-      <div class="mono-label mb-6 flex items-center justify-center gap-2.5">
-        <span class="status-led"></span>C.01 · Contact
-      </div>
+  {/* ==================== 04 · EXPERIENCE ==================== */}
+  <section id="experience" class="px-[var(--gutter)] pt-28 md:pt-36">
+    <div class="mx-auto max-w-content border-t border-graphite-800 pt-14">
+      <div class="mono-label mb-6 text-signal-500">04 / Experience</div>
       <h2
-        class="mb-6 font-display text-[clamp(3rem,8vw,6.5rem)] font-extrabold leading-[0.95] tracking-tightest"
+        class="mb-12 font-display text-[clamp(2.2rem,5vw,4rem)] font-bold leading-[1] tracking-tightest"
+      >
+        Technical work with real responsibility.
+      </h2>
+
+      <ul>
+        {
+          EXPERIENCE.map((e) => (
+            <li class="grid grid-cols-1 gap-2 border-t border-graphite-800 py-7 md:grid-cols-[240px_1fr] md:gap-8">
+              <div>
+                <div class="mono-label text-signal-500">{e.org}</div>
+                <div class="mono-label mt-1 text-graphite-400">{e.when}</div>
+              </div>
+              <div>
+                <div class="mb-2 font-display text-xl font-bold leading-tight text-graphite-50">
+                  {e.role}
+                </div>
+                <p class="max-w-2xl text-[15px] leading-[1.65] text-graphite-300">{e.body}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  {/* ==================== 05 · CONTACT ==================== */}
+  <section id="contact" class="px-[var(--gutter)] pb-32 pt-28 md:pt-40">
+    <div class="mx-auto max-w-content border-t border-graphite-800 pt-14">
+      <div class="mono-label mb-6 text-signal-500">05 / Contact</div>
+      <h2
+        class="mb-6 font-display text-[clamp(2.6rem,7vw,5.5rem)] font-extrabold leading-[0.95] tracking-tightest"
       >
         Let's <span class="text-signal-gradient">build</span> something.
       </h2>
-      <p class="mx-auto mb-10 max-w-lg text-lg text-graphite-200">
-        For repair, a website or product build, robotics coaching collaborations, or a conversation
-        about circuits — the fastest way to reach me is here. Résumé available on request.
+      <p class="mb-10 max-w-lg text-[17px] leading-[1.7] text-graphite-300">
+        For repair, a website or product build, robotics collaboration, or a conversation about
+        circuits. Résumé available on request.
       </p>
-      <div class="flex flex-wrap items-center justify-center gap-3">
-        <a href="/contact/" class="btn btn-primary">
-          <span>Get in touch</span>
-          <span aria-hidden="true">→</span>
-        </a>
+      <div class="flex flex-wrap gap-3">
+        <a href="/contact/" class="btn btn-primary">Get in touch</a>
         <a href={`mailto:${SITE.email}`} class="btn">Email direct</a>
       </div>
     </div>

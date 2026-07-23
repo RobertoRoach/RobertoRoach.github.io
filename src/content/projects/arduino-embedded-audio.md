@@ -1,6 +1,6 @@
 ---
 title: Arduino Embedded Audio System for Odyssey of the Mind
-summary: An Arduino-based embedded audio system designed and built for an Odyssey of the Mind competition — Bluetooth Low Energy control, 10 GB of local audio storage, and playback that works with no internet connection.
+summary: An Arduino-based embedded audio system for an Odyssey of the Mind performance — BLE control, 10 GB of local storage, and fully offline playback.
 category: robotics-and-embedded-systems
 featured: true
 year: "Early — first Arduino work at age 11 in Argentina"

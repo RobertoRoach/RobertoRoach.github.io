@@ -1,6 +1,6 @@
 ---
 title: iCode Memorial — Robotics, Coding, AI & Electrical Engineering Instructor
-summary: Instructor and VEX IQ coach at iCode Memorial in Houston. Taught more than one hundred elementary and middle-school students electrical engineering fundamentals, embedded systems, robotics, and programming.
+summary: Instructor and VEX IQ coach at iCode Memorial, Houston. Taught 100+ students electrical engineering, embedded systems, robotics, and programming.
 category: teaching-and-leadership
 featured: true
 year: "Ongoing"

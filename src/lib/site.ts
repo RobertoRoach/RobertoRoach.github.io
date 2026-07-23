@@ -73,21 +73,40 @@ export const CATEGORIES = [
 
 export type CategorySlug = (typeof CATEGORIES)[number]["slug"];
 
-// The three overlapping ways I frame my work — used on the homepage identity block.
-export const DISCIPLINE_PATHWAYS = [
+// RAR's three practice areas — the tight 3-column block on the homepage.
+export const RAR_PRACTICE = [
   {
-    label: "Systems that move.",
-    body: "Robotics, embedded controllers, autonomous programming, and sensor integration — the physical stack.",
-    href: "/work/#robotics-and-embedded-systems",
+    label: "Website systems",
+    body: "Design, development, GitHub Pages publishing, and ongoing maintenance.",
   },
   {
-    label: "Systems that think.",
-    body: "Software, embedded firmware, and the code that runs on the boards I build and repair.",
-    href: "/work/#web-and-product-development",
+    label: "Diagnostics + repair",
+    body: "Hardware troubleshooting, electronics repair, software restoration, and documentation.",
   },
   {
-    label: "Systems that connect.",
-    body: "RAR Technologies — websites, product work, and repair services for clients across Houston, in English and Spanish.",
-    href: "/work/#rar-technologies",
+    label: "Embedded products",
+    body: "Technology concepts, embedded electronics, and hardware-software integration.",
+  },
+] as const;
+
+// Experience — the clean role list on the homepage.
+export const EXPERIENCE = [
+  {
+    org: "RAR Technologies LLC",
+    when: "2023 — Present",
+    role: "Founder & Lead Technician",
+    body: "Founded and lead a technical practice spanning websites, product development, electronics repair, hardware diagnostics, and bilingual client work.",
+  },
+  {
+    org: "iCode Memorial",
+    when: "Ongoing",
+    role: "Robotics, Coding, AI & EE Instructor",
+    body: "Taught 100+ students circuits, sensors, Arduino, VEX IQ / V5, autonomous programming, and multi-language software.",
+  },
+  {
+    org: "AVM Services, LLC",
+    when: "Ongoing",
+    role: "Immigration Assistant & Bilingual Translator",
+    body: "Translated legal documents and client communications between English and Spanish.",
   },
 ] as const;

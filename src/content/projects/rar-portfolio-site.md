@@ -1,6 +1,6 @@
 ---
 title: Engineering Portfolio — robertoroach.github.io
-summary: Designed and built through RAR Technologies. A static Astro site with strict TypeScript, Tailwind CSS, and a content-collection–driven case-study system, deployed on GitHub Pages via GitHub Actions.
+summary: Designed and built through RAR Technologies — a static Astro site with strict TypeScript and a content-collection case-study system, auto-deployed to GitHub Pages.
 category: web-and-product-development
 featured: true
 year: "2026"
