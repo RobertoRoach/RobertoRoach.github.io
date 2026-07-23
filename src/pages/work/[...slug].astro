@@ -19,14 +19,13 @@ const { data } = project;
 const { Content } = await project.render();
 const category = CATEGORIES.find((c) => c.slug === data.category);
 
-// Ordered sections we render if present.
 const meta = [
   { k: "Role", v: data.role },
   { k: "Year", v: String(data.year) },
   { k: "Status", v: data.status },
   { k: "Category", v: category?.label ?? data.category },
 ];
-if (data.collaborators.length) meta.push({ k: "With", v: data.collaborators.join(", ") });
+if (data.collaborators.length) meta.push({ k: "With", v: data.collaborators.join(" · ") });
 
 const chapters = [
   { label: "Problem", body: data.problem },
@@ -35,22 +34,25 @@ const chapters = [
   { label: "Solution", body: data.solution },
   { label: "Results", body: data.results },
   { label: "Lessons", body: data.lessons },
-].filter((c) => c.body && c.body.trim().length > 0);
+].filter((c) => typeof c.body === "string" && c.body.trim().length > 0);
 ---
 
 <BaseLayout title={data.title} description={data.summary} type="article">
   <article>
-    {/* Hero */}
-    <header class="bg-radial-signal relative overflow-hidden px-[var(--gutter)] pt-36 md:pt-44">
-      <div class="bg-grid absolute inset-0 opacity-60" aria-hidden="true"></div>
+    <header class="relative overflow-hidden px-[var(--gutter)] pt-36 md:pt-44">
+      <div
+        class="pointer-events-none absolute inset-0 opacity-70"
+        style="background:radial-gradient(900px 480px at 12% -10%, rgba(225,6,0,0.10), transparent 60%);"
+        aria-hidden="true"
+      >
+      </div>
+      <div class="bg-grid absolute inset-0 opacity-50" aria-hidden="true"></div>
       <div class="relative mx-auto max-w-content">
         <div
           class="mb-8 flex flex-wrap items-center gap-3 font-mono text-[11px] uppercase tracking-widest text-graphite-300"
         >
-          <a href="/work/" class="text-graphite-300 transition-colors hover:text-signal-400">
-            ← Work
-          </a>
-          <span>/</span>
+          <a href="/work/" class="transition-colors hover:text-signal-400">← Work</a>
+          <span aria-hidden="true">/</span>
           {
             category && (
               <a
@@ -68,7 +70,7 @@ const chapters = [
           {data.title}
         </h1>
         <p
-          class="mb-12 max-w-3xl font-display text-[clamp(1.2rem,2vw,1.55rem)] font-medium leading-[1.4] text-graphite-100"
+          class="mb-12 max-w-3xl font-display text-[clamp(1.15rem,1.9vw,1.5rem)] font-medium leading-[1.4] text-graphite-100"
         >
           {data.summary}
         </p>
@@ -87,28 +89,8 @@ const chapters = [
       </div>
     </header>
 
-    {/* Cover image (if present) */}
-    {
-      data.cover && (
-        <div class="px-[var(--gutter)] pb-16">
-          <div class="mx-auto max-w-content overflow-hidden rounded-2xl border border-graphite-800">
-            {"src" in (data.cover as object) ? (
-              <img
-                src={(data.cover as { src: string }).src}
-                alt={(data.cover as { alt: string }).alt ?? data.title}
-                class="w-full"
-                loading="lazy"
-              />
-            ) : null}
-          </div>
-        </div>
-      )
-    }
-
-    {/* Body */}
     <div class="px-[var(--gutter)] pb-24">
       <div class="mx-auto grid max-w-content grid-cols-1 gap-14 lg:grid-cols-[220px_1fr]">
-        {/* Sidebar meta */}
         <aside class="lg:sticky lg:top-24 lg:self-start">
           {
             data.technologies.length > 0 && (
@@ -167,9 +149,29 @@ const chapters = [
               </div>
             )
           }
+          {
+            data.references.length > 0 && (
+              <div class="mb-8">
+                <div class="mono-label mb-3">Verification</div>
+                <ul class="space-y-2">
+                  {data.references.map((r) => (
+                    <li>
+                      <a
+                        href={r.href}
+                        class="text-sm text-graphite-100 underline decoration-graphite-500 underline-offset-4 hover:text-signal-400 hover:decoration-signal-400"
+                        rel="noopener"
+                        target="_blank"
+                      >
+                        {r.label} →
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
+          }
         </aside>
 
-        {/* Chapters + MDX */}
         <div class="max-w-none">
           {
             chapters.length > 0 && (
@@ -177,7 +179,7 @@ const chapters = [
                 {chapters.map((c, i) => (
                   <section>
                     <div class="mono-label mb-3 text-signal-400">
-                      0{i + 1} · {c.label}
+                      {String(i + 1).padStart(2, "0")} · {c.label}
                     </div>
                     <p class="whitespace-pre-line text-[17px] leading-[1.75] text-graphite-100">
                       {c.body}

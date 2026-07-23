@@ -5,12 +5,17 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Contact"
-  description={`Get in touch with Roberto Roach — email ${SITE.email} or phone ${SITE.phone}. Houston, TX.`}
+  description={`Get in touch with Roberto Andrés Roach — email ${SITE.email} or call ${SITE.phone}. Founder of RAR Technologies, Houston, Texas.`}
 >
-  <section
-    class="bg-radial-signal relative min-h-[80dvh] overflow-hidden px-[var(--gutter)] pb-24 pt-36 md:pt-44"
-  >
+  <section class="relative min-h-[80dvh] overflow-hidden px-[var(--gutter)] pb-24 pt-36 md:pt-44">
+    <div
+      class="pointer-events-none absolute inset-0"
+      style="background:radial-gradient(1000px 620px at 12% -10%, rgba(225,6,0,0.09), transparent 60%);"
+      aria-hidden="true"
+    >
+    </div>
     <div class="bg-grid absolute inset-0 opacity-60" aria-hidden="true"></div>
+
     <div class="relative mx-auto max-w-content">
       <div class="mono-label mb-6 flex items-center gap-2.5">
         <span class="status-led"></span>C.01 · Contact
@@ -21,30 +26,31 @@ import { SITE } from "@/lib/site";
           <h1
             class="mb-8 font-display text-[clamp(3rem,9vw,7rem)] font-extrabold leading-[0.9] tracking-tightest"
           >
-            Let's <em class="text-signal-gradient not-italic">build</em>
+            Let's <span class="text-signal-gradient">build</span>
             <br />something.
           </h1>
           <p
-            class="mb-10 max-w-xl font-display text-[clamp(1.15rem,2vw,1.5rem)] font-medium leading-[1.4] text-graphite-100"
+            class="mb-10 max-w-xl font-display text-[clamp(1.1rem,1.9vw,1.45rem)] font-medium leading-[1.4] text-graphite-100"
           >
-            For a repair job at RAR, a website or ad campaign, a robotics collaboration, or a
-            conversation about circuits — the fastest way to reach me is here.
+            For a repair job at RAR, a website or product build, a robotics coaching collaboration,
+            or a conversation about circuits — the fastest way to reach me is here. Résumé available
+            on request.
           </p>
 
           <div class="space-y-4">
             <a
               href={`mailto:${SITE.email}`}
-              class="group flex items-center justify-between gap-6 rounded-2xl border border-graphite-800 bg-graphite-900 p-6 transition-colors hover:border-signal-500/70 hover:bg-signal-500/5"
+              class="group flex items-center justify-between gap-6 border border-graphite-800 bg-graphite-800/60 p-6 transition-colors hover:border-signal-500/70"
             >
               <div>
-                <div class="mono-label mb-2 text-signal-400">Email</div>
+                <div class="mono-label mb-2 text-signal-500">Email</div>
                 <div class="font-display text-2xl font-bold leading-tight text-graphite-50">
                   {SITE.email}
                 </div>
                 <div class="mt-1 text-sm text-graphite-300">Reply within 24 hours</div>
               </div>
               <span
-                class="font-mono text-xs uppercase tracking-widest text-graphite-300 transition-colors group-hover:text-signal-400"
+                class="font-mono text-xs uppercase tracking-widest text-graphite-300 transition-colors group-hover:text-signal-500"
               >
                 Open →
               </span>
@@ -52,34 +58,42 @@ import { SITE } from "@/lib/site";
 
             <a
               href={SITE.phoneHref}
-              class="group flex items-center justify-between gap-6 rounded-2xl border border-graphite-800 bg-graphite-900 p-6 transition-colors hover:border-signal-500/70 hover:bg-signal-500/5"
+              class="group flex items-center justify-between gap-6 border border-graphite-800 bg-graphite-800/60 p-6 transition-colors hover:border-signal-500/70"
             >
               <div>
-                <div class="mono-label mb-2 text-signal-400">Phone / SMS</div>
+                <div class="mono-label mb-2 text-signal-500">Phone · SMS</div>
                 <div class="font-display text-2xl font-bold leading-tight text-graphite-50">
                   {SITE.phone}
                 </div>
                 <div class="mt-1 text-sm text-graphite-300">
-                  Call or text — I read messages before I answer calls.
+                  Call or text — messages are read before calls are answered.
                 </div>
               </div>
               <span
-                class="font-mono text-xs uppercase tracking-widest text-graphite-300 transition-colors group-hover:text-signal-400"
+                class="font-mono text-xs uppercase tracking-widest text-graphite-300 transition-colors group-hover:text-signal-500"
               >
                 Open →
               </span>
             </a>
+
+            <div class="border border-graphite-800 bg-graphite-800/40 p-6">
+              <div class="mono-label mb-2 text-graphite-300">Résumé</div>
+              <div class="mb-2 font-display text-xl font-bold leading-tight text-graphite-50">
+                Available on request
+              </div>
+              <p class="text-sm text-graphite-300">
+                Email or text for a current résumé PDF. Custom versions available for recruiters and
+                admissions officers.
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Right column — a compose panel that opens the user's mail client. */}
-        <aside
-          class="rounded-2xl border border-graphite-800 bg-graphite-900/60 p-8 backdrop-blur-sm"
-        >
+        <aside class="border border-graphite-800 bg-graphite-800/60 p-8">
           <div
             class="mb-6 flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-graphite-300"
           >
-            <span class="text-signal-400">Compose · MAIL / OUT</span>
+            <span class="text-signal-500">Compose · MAIL / OUT</span>
             <span class="flex items-center gap-2">
               <span class="status-led"></span>Ready
             </span>
@@ -97,7 +111,7 @@ import { SITE } from "@/lib/site";
                 required
                 name="name"
                 type="text"
-                class="w-full rounded-lg border border-graphite-700 bg-graphite-950 px-4 py-3 font-sans text-base text-graphite-50 outline-none transition-colors placeholder:text-graphite-400 focus:border-signal-500"
+                class="w-full border border-graphite-700 bg-graphite-950 px-4 py-3 font-sans text-base text-graphite-50 outline-none transition-colors placeholder:text-graphite-400 focus:border-signal-500"
                 placeholder="e.g. Ada Lovelace"
               />
             </label>
@@ -107,21 +121,23 @@ import { SITE } from "@/lib/site";
                 required
                 name="email"
                 type="email"
-                class="w-full rounded-lg border border-graphite-700 bg-graphite-950 px-4 py-3 font-sans text-base text-graphite-50 outline-none transition-colors placeholder:text-graphite-400 focus:border-signal-500"
+                class="w-full border border-graphite-700 bg-graphite-950 px-4 py-3 font-sans text-base text-graphite-50 outline-none transition-colors placeholder:text-graphite-400 focus:border-signal-500"
                 placeholder="you@domain.com"
               />
             </label>
             <label class="block">
-              <span class="mono-label mb-2 block">Subject</span>
+              <span class="mono-label mb-2 block">Topic</span>
               <select
                 name="subject"
-                class="w-full rounded-lg border border-graphite-700 bg-graphite-950 px-4 py-3 font-sans text-base text-graphite-50 outline-none transition-colors focus:border-signal-500"
+                class="w-full border border-graphite-700 bg-graphite-950 px-4 py-3 font-sans text-base text-graphite-50 outline-none transition-colors focus:border-signal-500"
               >
-                <option value="Repair job">RAR — Repair job</option>
-                <option value="Website">RAR — Website / product</option>
-                <option value="Advertising">RAR — Advertising / brand</option>
-                <option value="Robotics collaboration">Robotics collaboration</option>
-                <option value="Coaching / judging">Coaching / judging</option>
+                <option value="RAR — Repair job">RAR — Repair job</option>
+                <option value="RAR — Website or product">RAR — Website or product</option>
+                <option value="Robotics coaching collaboration"
+                  >Robotics coaching collaboration</option
+                >
+                <option value="iCode / teaching">iCode / teaching</option>
+                <option value="Recruiting / admissions">Recruiting / admissions</option>
                 <option value="Just saying hi">Just saying hi</option>
               </select>
             </label>
@@ -131,7 +147,7 @@ import { SITE } from "@/lib/site";
                 required
                 name="message"
                 rows="5"
-                class="w-full resize-none rounded-lg border border-graphite-700 bg-graphite-950 px-4 py-3 font-sans text-base text-graphite-50 outline-none transition-colors placeholder:text-graphite-400 focus:border-signal-500"
+                class="w-full resize-none border border-graphite-700 bg-graphite-950 px-4 py-3 font-sans text-base text-graphite-50 outline-none transition-colors placeholder:text-graphite-400 focus:border-signal-500"
                 placeholder="What are we building?"></textarea>
             </label>
             <button type="submit" class="btn btn-primary w-full justify-center">
@@ -151,8 +167,6 @@ import { SITE } from "@/lib/site";
 </BaseLayout>
 
 <script>
-  // Progressive-enhance: build a nicely-formatted mailto instead of the default
-  // text/plain payload that mail apps handle awkwardly.
   const form = document.getElementById("compose") as HTMLFormElement | null;
   if (form) {
     form.addEventListener("submit", (e) => {

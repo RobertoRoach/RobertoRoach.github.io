@@ -1,10 +1,11 @@
-// Central site metadata — used by <SEO/>, layout, and copy blocks.
+// Central site metadata — imported by SEO, layouts, and copy blocks.
 
 export const SITE = {
-  name: "Roberto Roach",
-  title: "Roberto Roach — Engineer · Founder · Coach",
+  name: "Roberto Andrés Roach",
+  shortName: "Roberto Roach",
+  title: "Roberto Andrés Roach — Founder · Engineer · Robotics Educator",
   description:
-    "Roberto Roach — electrical-engineering student, robotics educator, web developer, and founder of RAR Technologies (repair · web · advertising). Based in Houston, TX.",
+    "Roberto Andrés Roach — founder of RAR Technologies, electrical engineering student at Penn State Behrend, robotics educator at iCode Memorial, and embedded-systems developer. Houston, Texas.",
   url: "https://robertoroach.github.io",
   locale: "en-US",
   email: "robertoaroachm@gmail.com",
@@ -12,9 +13,9 @@ export const SITE = {
   phoneHref: "tel:+13465431863",
   location: "Houston, TX",
   coords: "29.76°N 95.36°W",
-  university: "Penn State — Electrical Engineering (Class of 2030)",
+  university: "Penn State Behrend — Electrical Engineering, Class of 2030",
+  universityShort: "Penn State Behrend · EE '30",
   ogImage: "/og-default.svg",
-  twitterHandle: null as string | null,
 } as const;
 
 export const NAV_ITEMS = [
@@ -24,74 +25,69 @@ export const NAV_ITEMS = [
   { href: "/contact/", label: "Contact" },
 ] as const;
 
-// The six disciplines/categories used across content collections and pages.
+// The six disciplines / categories.
 export const CATEGORIES = [
   {
     slug: "rar-technologies",
     label: "RAR Technologies",
     short: "RAR",
     blurb:
-      "The studio I run out of Houston — electronics repair, websites, and advertising for local clients.",
+      "The studio I founded in 2023 — website design, technology-product development, electronics repair, and embedded work for local clients.",
   },
   {
     slug: "web-and-product-development",
     label: "Web & Product Development",
     short: "Web",
     blurb:
-      "Websites, landing pages, and interactive product work — the software side of RAR Technologies.",
+      "Static and interactive websites, small technology products, and the software side of RAR Technologies.",
   },
   {
     slug: "robotics-and-embedded-systems",
     label: "Robotics & Embedded Systems",
     short: "Robotics",
     blurb:
-      "Competition robots, embedded controllers, Arduino builds, and closed-loop mechanical systems.",
+      "VEX V5 competition robots, Arduino embedded systems, sensor integration, and autonomous programming.",
   },
   {
     slug: "electrical-engineering",
     label: "Electrical Engineering",
     short: "EE",
     blurb:
-      "Circuit design, sensors, motors, and hands-on board-level repair — the discipline I'm formally studying.",
-  },
-  {
-    slug: "aerospace-and-rocketry",
-    label: "Aerospace & Rocketry",
-    short: "Aero",
-    blurb:
-      "Model rockets — built, launched, recovered, and analyzed. Where I learned to think about stability.",
+      "Circuit design, breadboards, motors, sensors, and hardware diagnostics — the discipline I'm formally studying at Penn State Behrend.",
   },
   {
     slug: "teaching-and-leadership",
     label: "Teaching & Leadership",
     short: "Teach",
     blurb:
-      "Coaching a world-championship-winning team, judging VEX IQ, and teaching robotics + code to younger builders.",
+      "Instructor and VEX IQ coach at iCode Memorial, and primary robotics coach for a Texas State Champion Odyssey of the Mind team.",
+  },
+  {
+    slug: "aerospace-and-rocketry",
+    label: "Aerospace & Rocketry",
+    short: "Aero",
+    blurb:
+      "Model rocket design, construction, and launch analysis from high-school aerospace coursework.",
   },
 ] as const;
 
 export type CategorySlug = (typeof CATEGORIES)[number]["slug"];
 
+// The three overlapping ways I frame my work — used on the homepage identity block.
 export const DISCIPLINE_PATHWAYS = [
   {
-    label: "I build",
-    title: "Systems that move.",
-    body: "Robotics, embedded controllers, and electrical work — the physical stack.",
-    href: "/work/?discipline=robotics",
-    accent: "signal",
+    label: "Systems that move.",
+    body: "Robotics, embedded controllers, autonomous programming, and sensor integration — the physical stack.",
+    href: "/work/#robotics-and-embedded-systems",
   },
   {
-    label: "I build",
-    title: "Systems that think.",
-    body: "Software, small tools, and the code that runs on the boards I solder.",
-    href: "/work/?discipline=web",
-    accent: "graphite",
+    label: "Systems that think.",
+    body: "Software, embedded firmware, and the code that runs on the boards I build and repair.",
+    href: "/work/#web-and-product-development",
   },
   {
-    label: "I build",
-    title: "Systems that connect.",
-    body: "RAR Technologies — repair, websites, and advertising for local clients and teams I coach.",
-    href: "/work/?discipline=rar",
-    accent: "amber",
+    label: "Systems that connect.",
+    body: "RAR Technologies — websites, product work, and repair services for clients across Houston, in English and Spanish.",
+    href: "/work/#rar-technologies",
   },
 ] as const;

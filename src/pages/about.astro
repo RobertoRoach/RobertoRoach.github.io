@@ -5,26 +5,30 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="About"
-  description="Roberto Roach — 17, Houston, RAR Technologies founder, robotics coach, and incoming Penn State electrical engineering student."
+  description="Roberto Andrés Roach — founder of RAR Technologies, incoming Penn State Behrend electrical engineering student, robotics educator at iCode Memorial, and embedded-systems developer. Bilingual EN / ES. Houston, TX."
 >
-  <section
-    class="bg-radial-signal relative overflow-hidden px-[var(--gutter)] pb-16 pt-36 md:pb-24 md:pt-44"
-  >
+  <section class="relative overflow-hidden px-[var(--gutter)] pb-16 pt-36 md:pb-24 md:pt-44">
+    <div
+      class="pointer-events-none absolute inset-0"
+      style="background:radial-gradient(1000px 620px at 12% -10%, rgba(225,6,0,0.08), transparent 60%);"
+      aria-hidden="true"
+    >
+    </div>
     <div class="bg-grid absolute inset-0 opacity-60" aria-hidden="true"></div>
     <div class="relative mx-auto max-w-content">
       <div class="mono-label mb-6 flex items-center gap-2.5">
-        <span class="status-led"></span>A · About
+        <span class="status-led"></span>Ab.01 · About
       </div>
       <h1
         class="mb-8 max-w-4xl font-display text-[clamp(3rem,8vw,6rem)] font-extrabold leading-[0.92] tracking-tightest"
       >
-        Engineer. <em class="text-signal-gradient not-italic">Founder.</em> Coach.
+        Founder. Engineer. <span class="text-signal-gradient">Educator.</span>
       </h1>
       <p
-        class="max-w-3xl font-display text-[clamp(1.2rem,2vw,1.6rem)] font-medium leading-[1.35] text-graphite-100"
+        class="max-w-3xl font-display text-[clamp(1.15rem,2vw,1.55rem)] font-medium leading-[1.35] text-graphite-100"
       >
-        Seventeen. Houston, Texas. Building things that move, think, and connect since I could hold
-        a screwdriver.
+        Roberto Andrés Roach — building RAR Technologies, teaching engineering, coaching robotics,
+        and shipping embedded systems out of Houston, Texas. Bilingual English and Spanish.
       </p>
     </div>
   </section>
@@ -34,22 +38,22 @@ import { SITE } from "@/lib/site";
       class="mx-auto grid max-w-content grid-cols-1 items-start gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24"
     >
       <div
-        class="reveal relative aspect-[4/5] overflow-hidden rounded-2xl border border-graphite-800 bg-graphite-900"
+        class="reveal relative aspect-[4/5] overflow-hidden border border-graphite-800 bg-graphite-800"
       >
         <div
           class="absolute inset-x-0 top-0 z-10 flex items-center justify-between p-5 font-mono text-[10px] uppercase tracking-widest text-graphite-300"
         >
-          <span class="text-signal-400">R.R / 01</span>
+          <span class="text-signal-500">R.R / 01</span>
           <span>Subject</span>
         </div>
         <img
           src="/images/roberto.png"
-          alt="Portrait of Roberto Roach"
+          alt="Portrait of Roberto Andrés Roach"
           loading="lazy"
           class="absolute inset-x-0 bottom-0 h-full w-full object-contain object-bottom"
         />
         <div
-          class="absolute inset-0 z-[5] bg-gradient-to-t from-graphite-950/60 via-transparent to-transparent"
+          class="pointer-events-none absolute inset-0 z-[5] bg-gradient-to-t from-graphite-950/60 via-transparent to-transparent"
           aria-hidden="true"
         >
         </div>
@@ -57,9 +61,9 @@ import { SITE } from "@/lib/site";
           class="absolute inset-x-0 bottom-0 z-10 flex items-center justify-between p-5 font-mono text-[10px] uppercase tracking-widest text-graphite-300"
         >
           <span>{SITE.location}</span>
-          <span class="flex items-center gap-2 text-signal-400">
-            <span class="status-led"></span>Active
-          </span>
+          <span class="flex items-center gap-2 text-signal-500"
+            ><span class="status-led"></span>Active</span
+          >
         </div>
       </div>
 
@@ -68,32 +72,43 @@ import { SITE } from "@/lib/site";
         <h2
           class="mb-8 font-display text-[clamp(2rem,4vw,3.2rem)] font-bold leading-[1.02] tracking-tightest"
         >
-          A working <em class="text-signal-gradient not-italic">document.</em>
+          A working <span class="text-signal-gradient">document.</span>
         </h2>
         <div class="space-y-5 text-[17px] leading-[1.75] text-graphite-100">
           <p>
-            I run <strong>RAR Technologies</strong> — electronics repair, websites, and advertising out
-            of a single studio in Houston. It started at the bench, diagnosing phones and laptops, and
-            grew into web and brand work for the same kinds of clients.
+            I founded <strong>RAR Technologies LLC</strong> in 2023 — a single studio in Houston delivering
+            <strong>website design and development</strong>,
+            <strong>technology-product development</strong>, and
+            <strong>electronics repair and diagnostics</strong>. Client intake and documentation are
+            available in English and Spanish.
           </p>
           <p>
-            I coached the <strong>Odyssey of the Mind</strong> team that won Worlds. I judge
-            <strong>VEX IQ</strong> competitions across Texas. I've taught robotics and code (Python,
-            Java, C++, Lua) at <strong>iCode</strong>. On weekends I translate legal documents
-            between Spanish and English.
+            I teach robotics, coding, AI, and electrical engineering at
+            <strong>iCode Memorial</strong>
+            in Houston, and coach VEX IQ teams there. I've taught more than <strong
+              >one hundred elementary and middle-school students</strong
+            > to date — electrical engineering fundamentals, breadboards, sensors, microcontrollers, autonomous
+            programming, and multi-language software (Python, Java, C++, Lua, and more).
           </p>
           <p>
-            In the fall I head to <strong>Penn State</strong> for electrical engineering — class of 2030.
-            Circuits, robotics, embedded systems: the formal version of what I've been teaching myself
-            out of the repair bench.
+            In the 2025 – 2026 season I served as <strong>primary robotics coach</strong> for River Oaks
+            Elementary Team A (#3999) — Division I, Problem 4, "Life's a Ball!". The team placed <span
+              class="text-signal-500">1st at the 2026 Texas State Odyssey of the Mind</span
+            > and
+            <span class="text-signal-500">7th at the 2026 World Finals</span>.
           </p>
           <p>
-            Everything on this site is real. Where I don't have a detail verified, it's labeled
-            <span
-              class="rounded border border-graphite-700 bg-graphite-900 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-signal-400"
-              >TODO</span
-            >
-            instead of made up. It'll get filled in as records surface.
+            My first Arduino work was at <strong>age 11, while living in Argentina</strong>. That
+            starting point runs through most of my embedded work today — including an Arduino-based
+            audio system with BLE control and 10 GB of local, offline storage that I built for a
+            live Odyssey of the Mind performance.
+          </p>
+          <p>
+            In the fall I head to <strong>Penn State Behrend</strong> for
+            <strong>Electrical Engineering</strong> — <span class="text-signal-500"
+              >Class of 2030</span
+            >. Circuits, robotics, and embedded systems: the formal version of what I've been
+            running out of RAR since I was fifteen.
           </p>
         </div>
       </div>
@@ -108,52 +123,60 @@ import { SITE } from "@/lib/site";
         <h2
           class="reveal reveal-1 font-display text-[clamp(2rem,4.5vw,3.4rem)] font-bold leading-[1.02] tracking-tightest"
         >
-          The verified <em class="text-signal-gradient not-italic">record.</em>
+          The verified record.
         </h2>
       </div>
 
       <dl class="grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
-        <div class="reveal border-t border-graphite-800 pt-6">
-          <dt class="mono-label mb-3">Base</dt>
+        <div class="reveal border-l border-signal-500 bg-graphite-800/60 p-5">
+          <dt class="mono-label mb-3 text-graphite-300">Studio</dt>
           <dd class="font-display text-2xl font-bold leading-tight text-graphite-50">
-            Houston, TX
+            RAR Technologies LLC
           </dd>
-          <p class="mt-2 text-sm text-graphite-300">{SITE.coords}</p>
+          <p class="mt-2 text-sm text-graphite-300">Founded 2023 · Houston, TX</p>
         </div>
-        <div class="reveal reveal-1 border-t border-graphite-800 pt-6">
-          <dt class="mono-label mb-3">Studio</dt>
+        <div class="reveal reveal-1 border-l border-graphite-700 bg-graphite-800/40 p-5">
+          <dt class="mono-label mb-3 text-graphite-300">Teaches at</dt>
           <dd class="font-display text-2xl font-bold leading-tight text-graphite-50">
-            RAR Technologies
+            iCode Memorial
           </dd>
-          <p class="mt-2 text-sm text-graphite-300">Repair · Web · Advertising</p>
+          <p class="mt-2 text-sm text-graphite-300">100+ students · Houston, TX</p>
         </div>
-        <div class="reveal reveal-2 border-t border-graphite-800 pt-6">
-          <dt class="mono-label mb-3">Next</dt>
-          <dd class="font-display text-2xl font-bold leading-tight text-graphite-50">Penn State</dd>
+        <div class="reveal reveal-2 border-l border-graphite-700 bg-graphite-800/40 p-5">
+          <dt class="mono-label mb-3 text-graphite-300">Incoming</dt>
+          <dd class="font-display text-2xl font-bold leading-tight text-graphite-50">
+            Penn State Behrend
+          </dd>
           <p class="mt-2 text-sm text-graphite-300">Electrical Engineering · Class of 2030</p>
         </div>
-        <div class="reveal border-t border-graphite-800 pt-6">
-          <dt class="mono-label mb-3">Languages</dt>
-          <dd class="font-display text-2xl font-bold leading-tight text-graphite-50">EN · ES</dd>
-          <p class="mt-2 text-sm text-graphite-300">Bilingual (fluent)</p>
-        </div>
-        <div class="reveal reveal-1 border-t border-graphite-800 pt-6">
-          <dt class="mono-label mb-3">Coach</dt>
+        <div class="reveal border-l border-graphite-700 bg-graphite-800/40 p-5">
+          <dt class="mono-label mb-3 text-graphite-300">Coach — 2025 / 2026</dt>
           <dd class="font-display text-2xl font-bold leading-tight text-graphite-50">
-            OM · World Finals
+            OM Texas State Champion
           </dd>
-          <p class="mt-2 text-sm text-graphite-300">1st place · Odyssey of the Mind</p>
+          <p class="mt-2 text-sm text-graphite-300">
+            River Oaks Elementary Team A #3999 · Division I
+          </p>
         </div>
-        <div class="reveal reveal-2 border-t border-graphite-800 pt-6">
-          <dt class="mono-label mb-3">Judge</dt>
-          <dd class="font-display text-2xl font-bold leading-tight text-graphite-50">VEX IQ</dd>
-          <p class="mt-2 text-sm text-graphite-300">Texas competitions</p>
+        <div class="reveal reveal-1 border-l border-signal-500 bg-graphite-800/60 p-5">
+          <dt class="mono-label mb-3 text-graphite-300">Also — 2026</dt>
+          <dd class="font-display text-2xl font-bold leading-tight text-graphite-50">
+            World Finals · 7th place
+          </dd>
+          <p class="mt-2 text-sm text-graphite-300">Odyssey of the Mind Top 10, Division I</p>
+        </div>
+        <div class="reveal reveal-2 border-l border-graphite-700 bg-graphite-800/40 p-5">
+          <dt class="mono-label mb-3 text-graphite-300">Languages</dt>
+          <dd class="font-display text-2xl font-bold leading-tight text-graphite-50">
+            English · Spanish
+          </dd>
+          <p class="mt-2 text-sm text-graphite-300">Bilingual, fluent</p>
         </div>
       </dl>
     </div>
   </section>
 
-  {/* Coursework — verified from existing bio */}
+  {/* Coursework */}
   <section class="px-[var(--gutter)] py-24">
     <div class="mx-auto max-w-content">
       <div class="mb-14 grid grid-cols-1 items-baseline gap-6 md:grid-cols-[220px_1fr]">
@@ -161,33 +184,37 @@ import { SITE } from "@/lib/site";
         <h2
           class="reveal reveal-1 font-display text-[clamp(2rem,4.5vw,3.4rem)] font-bold leading-[1.02] tracking-tightest"
         >
-          What I've studied <em class="text-signal-gradient not-italic">outside of class.</em>
+          Additional structured coursework.
         </h2>
       </div>
 
       <ul class="reveal grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        <li class="rounded-2xl border border-graphite-800 bg-graphite-900 p-5">
-          <div class="mono-label mb-2 text-signal-400">Rice</div>
-          <div class="text-lg font-medium text-graphite-50">Physics: Electromagnetism</div>
+        <li class="border border-graphite-800 bg-graphite-800/40 p-5">
+          <div class="mono-label mb-2 text-signal-500">Rice</div>
+          <div class="text-lg font-medium text-graphite-50">Physics · Electromagnetism</div>
         </li>
-        <li class="rounded-2xl border border-graphite-800 bg-graphite-900 p-5">
-          <div class="mono-label mb-2 text-signal-400">Johns Hopkins</div>
-          <div class="text-lg font-medium text-graphite-50">Precalc → Data & Modeling</div>
+        <li class="border border-graphite-800 bg-graphite-800/40 p-5">
+          <div class="mono-label mb-2 text-signal-500">Johns Hopkins</div>
+          <div class="text-lg font-medium text-graphite-50">
+            Precalculus through Data & Modeling
+          </div>
         </li>
-        <li class="rounded-2xl border border-graphite-800 bg-graphite-900 p-5">
-          <div class="mono-label mb-2 text-signal-400">IBM</div>
-          <div class="text-lg font-medium text-graphite-50">Intro to Software Engineering</div>
+        <li class="border border-graphite-800 bg-graphite-800/40 p-5">
+          <div class="mono-label mb-2 text-signal-500">IBM</div>
+          <div class="text-lg font-medium text-graphite-50">
+            Introduction to Software Engineering
+          </div>
         </li>
-        <li class="rounded-2xl border border-graphite-800 bg-graphite-900 p-5">
-          <div class="mono-label mb-2 text-signal-400">IBM</div>
-          <div class="text-lg font-medium text-graphite-50">Intro to AI</div>
+        <li class="border border-graphite-800 bg-graphite-800/40 p-5">
+          <div class="mono-label mb-2 text-signal-500">IBM</div>
+          <div class="text-lg font-medium text-graphite-50">Introduction to AI</div>
         </li>
-        <li class="rounded-2xl border border-graphite-800 bg-graphite-900 p-5">
-          <div class="mono-label mb-2 text-signal-400">Google</div>
+        <li class="border border-graphite-800 bg-graphite-800/40 p-5">
+          <div class="mono-label mb-2 text-signal-500">Google</div>
           <div class="text-lg font-medium text-graphite-50">Cybersecurity Foundations</div>
         </li>
-        <li class="rounded-2xl border border-graphite-800 bg-graphite-900 p-5">
-          <div class="mono-label mb-2 text-signal-400">HKUST</div>
+        <li class="border border-graphite-800 bg-graphite-800/40 p-5">
+          <div class="mono-label mb-2 text-signal-500">HKUST</div>
           <div class="text-lg font-medium text-graphite-50">
             Python & Statistics for Financial Analysis
           </div>
@@ -196,8 +223,49 @@ import { SITE } from "@/lib/site";
     </div>
   </section>
 
+  {/* Additional experience */}
+  <section class="px-[var(--gutter)] py-24">
+    <div class="mx-auto max-w-content">
+      <div class="mb-14 grid grid-cols-1 items-baseline gap-6 md:grid-cols-[220px_1fr]">
+        <div class="mono-label reveal">X · Additional</div>
+        <h2
+          class="reveal reveal-1 font-display text-[clamp(2rem,4.5vw,3.4rem)] font-bold leading-[1.02] tracking-tightest"
+        >
+          Other roles worth noting.
+        </h2>
+      </div>
+
+      <ul class="reveal grid grid-cols-1 gap-4 md:grid-cols-2">
+        <li class="border border-graphite-800 bg-graphite-800/40 p-6">
+          <div class="mono-label mb-2 text-graphite-300">Ongoing</div>
+          <div class="mb-2 font-display text-xl font-bold leading-tight text-graphite-50">
+            Immigration assistant & bilingual document translator
+          </div>
+          <p class="text-sm leading-relaxed text-graphite-300">
+            Legal document translation between Spanish and English on a rolling basis.
+          </p>
+        </li>
+        <li class="border border-graphite-800 bg-graphite-800/40 p-6">
+          <div class="mono-label mb-2 text-graphite-300">Ongoing</div>
+          <div class="mb-2 font-display text-xl font-bold leading-tight text-graphite-50">
+            Chess instructor & logic mentor
+          </div>
+          <p class="text-sm leading-relaxed text-graphite-300">
+            Working with younger students on strategic thinking and pattern recognition.
+          </p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
   {/* Contact bump */}
-  <section class="bg-radial-signal relative overflow-hidden px-[var(--gutter)] py-28 text-center">
+  <section class="relative overflow-hidden px-[var(--gutter)] py-28 text-center">
+    <div
+      class="pointer-events-none absolute inset-0"
+      style="background:radial-gradient(700px 380px at 50% 20%, rgba(225,6,0,0.10), transparent 60%);"
+      aria-hidden="true"
+    >
+    </div>
     <div class="bg-grid absolute inset-0 opacity-40" aria-hidden="true"></div>
     <div class="relative mx-auto max-w-2xl">
       <div class="mono-label mb-6 flex items-center justify-center gap-2.5">
@@ -206,7 +274,7 @@ import { SITE } from "@/lib/site";
       <h2
         class="mb-6 font-display text-[clamp(2.4rem,6vw,4.5rem)] font-extrabold leading-[0.95] tracking-tightest"
       >
-        Say <em class="text-signal-gradient not-italic">hi.</em>
+        Say <span class="text-signal-gradient">hi.</span>
       </h2>
       <div class="flex flex-wrap items-center justify-center gap-3">
         <a href="/contact/" class="btn btn-primary"> Get in touch </a>

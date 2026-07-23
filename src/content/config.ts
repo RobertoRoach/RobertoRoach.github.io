@@ -17,20 +17,29 @@ const galleryItem = z.object({
   caption: z.string().optional(),
 });
 
+// External-link record (with a required label so the sidebar can render it).
+const externalLink = z.object({
+  label: z.string(),
+  href: z.string().url(),
+});
+
 const projects = defineCollection({
   type: "content",
   schema: ({ image }) =>
     z.object({
       title: z.string(),
       slug: z.string().optional(),
-      summary: z.string().min(20).max(240),
+      summary: z.string().min(20).max(280),
       category: z.enum(CATEGORY_ENUM),
       featured: z.boolean().default(false),
       year: z.union([z.number(), z.string()]),
-      role: z.string().default("TODO — role not yet documented"),
+      role: z.string(),
       collaborators: z.array(z.string()).default([]),
       technologies: z.array(z.string()).default([]),
       hardware: z.array(z.string()).default([]),
+      // The narrative chapters — every one is optional. Templates skip
+      // any chapter that isn't present, so nothing labelled "TODO" ever
+      // renders in the public build.
       problem: z.string().optional(),
       process: z.string().optional(),
       challenges: z.string().optional(),
@@ -41,6 +50,7 @@ const projects = defineCollection({
       gallery: z.array(galleryItem).default([]),
       liveUrl: z.string().url().optional(),
       githubUrl: z.string().url().optional(),
+      references: z.array(externalLink).default([]),
       status: z.enum(STATUS_ENUM).default("shipped"),
       order: z.number().default(0),
     }),

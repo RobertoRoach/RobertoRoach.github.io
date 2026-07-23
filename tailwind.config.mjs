@@ -6,35 +6,34 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Charcoal foundation. Red stays a minority accent (10–15% of composition).
         graphite: {
-          950: "#08080A",
-          900: "#0B0B0F",
-          850: "#101015",
-          800: "#16161C",
-          700: "#1D1D25",
-          600: "#2A2A34",
-          500: "#3D3D48",
-          400: "#5A5A66",
-          300: "#8A8A96",
-          200: "#B6B6BE",
-          100: "#DEDEE3",
-          50: "#F5F5F7",
+          950: "#080808", // Main background
+          900: "#0C0C0C",
+          850: "#111111",
+          800: "#121212", // Elevated surfaces
+          700: "#1A1A1A",
+          600: "#252525",
+          500: "#3A3A3A",
+          400: "#5C5C5C",
+          300: "#A6A6A6", // Secondary text
+          200: "#C9C9C9",
+          100: "#E5E5E5",
+          50: "#F2F2F2", // Primary text
         },
+        // Single controlled electric accent — used for traces, buttons,
+        // active nav, and category indicators. Never as background fill.
         signal: {
-          DEFAULT: "#FF3B2F",
-          50: "#FFE9E7",
+          DEFAULT: "#E10600",
+          50: "#FFE8E6",
           100: "#FFC9C4",
-          200: "#FF9A91",
-          300: "#FF6C5F",
-          400: "#FF4A3B",
-          500: "#FF3B2F",
-          600: "#DC1F13",
-          700: "#A5150C",
-          800: "#6E0E07",
-        },
-        amber: {
-          400: "#FFB84D",
-          500: "#FFA71E",
+          200: "#FF938A",
+          300: "#FF5C50",
+          400: "#FF2A23", // Interaction / hover
+          500: "#E10600", // Primary red
+          600: "#B00500",
+          700: "#7E0400",
+          800: "#560300",
         },
       },
       fontFamily: {
@@ -74,13 +73,13 @@ export default {
         content: "80rem",
       },
       boxShadow: {
-        signal: "0 0 40px rgba(255,59,47,0.25), 0 0 90px rgba(255,59,47,0.12)",
-        "signal-strong": "0 0 60px rgba(255,59,47,0.45), 0 0 130px rgba(255,59,47,0.2)",
+        signal: "0 0 32px rgba(225,6,0,0.22), 0 0 80px rgba(225,6,0,0.10)",
+        "signal-strong": "0 0 48px rgba(225,6,0,0.38), 0 0 120px rgba(225,6,0,0.18)",
       },
       keyframes: {
         blink: {
           "0%, 45%, 100%": { opacity: "1" },
-          "55%, 75%": { opacity: "0.28" },
+          "55%, 75%": { opacity: "0.32" },
         },
         caret: {
           "50%": { opacity: "0" },
