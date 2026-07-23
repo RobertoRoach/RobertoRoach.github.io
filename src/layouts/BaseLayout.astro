@@ -1,0 +1,64 @@
+---
+import "@/styles/global.css";
+import SEO from "@/components/SEO.astro";
+import Nav from "@/components/Nav.astro";
+import Footer from "@/components/Footer.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+  type?: "website" | "article";
+  showScanlines?: boolean;
+}
+
+const { title, description, image, canonical, type, showScanlines = true } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <SEO title={title} description={description} image={image} canonical={canonical} type={type} />
+  </head>
+  <body class:list={[showScanlines && "scanlines"]}>
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[9999] focus:rounded-lg focus:bg-signal-500 focus:px-4 focus:py-2 focus:font-mono focus:text-xs focus:uppercase focus:tracking-widest focus:text-graphite-950"
+    >
+      Skip to content
+    </a>
+
+    <Nav />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <script>
+      // Reveal-on-scroll — one shared observer for all `.reveal` nodes.
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const els = document.querySelectorAll<HTMLElement>(".reveal");
+      if (reduce) {
+        els.forEach((el) => el.classList.add("in"));
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("in");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { rootMargin: "0px 0px -80px 0px", threshold: 0.05 },
+        );
+        els.forEach((el) => io.observe(el));
+      }
+    </script>
+  </body>
+</html>

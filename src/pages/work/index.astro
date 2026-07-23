@@ -1,0 +1,99 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
+import { CATEGORIES } from "@/lib/site";
+
+const all = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
+
+const grouped = CATEGORIES.map((cat) => ({
+  ...cat,
+  items: all.filter((p) => p.data.category === cat.slug),
+})).filter((g) => g.items.length > 0);
+---
+
+<BaseLayout
+  title="Work"
+  description="Selected projects — RAR Technologies studio work, robotics, electrical engineering, aerospace, and teaching."
+>
+  <section
+    class="bg-radial-signal relative overflow-hidden px-[var(--gutter)] pb-16 pt-36 md:pb-24 md:pt-44"
+  >
+    <div class="bg-grid absolute inset-0 opacity-60" aria-hidden="true"></div>
+    <div class="relative mx-auto max-w-content">
+      <div class="mono-label mb-6 flex items-center gap-2.5">
+        <span class="status-led"></span>W · Work index
+      </div>
+      <h1
+        class="mb-8 font-display text-[clamp(3rem,9vw,7rem)] font-extrabold leading-[0.9] tracking-tightest"
+      >
+        <em class="text-signal-gradient not-italic">Working</em>
+        <br />documents.
+      </h1>
+      <p class="max-w-2xl text-[17px] leading-[1.7] text-graphite-200">
+        Selected projects across the six disciplines I work in — studio, web, robotics, EE,
+        aerospace, and teaching. Everything here is real; missing details are labeled
+        <span
+          class="rounded border border-graphite-700 bg-graphite-900 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-signal-400"
+          >TODO</span
+        >
+        rather than filled in with fiction.
+      </p>
+    </div>
+  </section>
+
+  {/* Category filter nav — simple in-page anchor set */}
+  <nav
+    aria-label="Categories"
+    class="sticky top-[64px] z-30 border-y border-graphite-800 bg-graphite-950/90 px-[var(--gutter)] py-3 backdrop-blur-xl"
+  >
+    <div
+      class="mx-auto flex max-w-content flex-nowrap items-center gap-2 overflow-x-auto font-mono text-[10px] uppercase tracking-widest text-graphite-300"
+    >
+      <span class="shrink-0 text-graphite-400">Categories:</span>
+      {
+        grouped.map((g) => (
+          <a
+            href={`#${g.slug}`}
+            class="shrink-0 rounded-full border border-graphite-700 bg-graphite-900 px-3 py-1.5 transition-colors hover:border-signal-500 hover:text-signal-400"
+          >
+            {g.short} · {g.items.length}
+          </a>
+        ))
+      }
+    </div>
+  </nav>
+
+  <div class="px-[var(--gutter)] py-16 md:py-24">
+    <div class="mx-auto flex max-w-content flex-col gap-24">
+      {
+        grouped.map((g, gi) => (
+          <section id={g.slug} aria-labelledby={`${g.slug}-heading`}>
+            <div class="mb-10 grid grid-cols-1 items-baseline gap-6 md:grid-cols-[220px_1fr]">
+              <div class="mono-label reveal">
+                <span class="text-signal-400">C.{String(gi + 1).padStart(2, "0")}</span> · {g.short}
+              </div>
+              <div class="reveal reveal-1">
+                <h2
+                  id={`${g.slug}-heading`}
+                  class="mb-4 font-display text-[clamp(2rem,4.5vw,3.6rem)] font-bold leading-[1.02] tracking-tightest"
+                >
+                  {g.label}
+                </h2>
+                <p class="max-w-2xl text-[15px] leading-[1.7] text-graphite-200">{g.blurb}</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              {g.items.map((p, i) => (
+                <div class="reveal">
+                  <ProjectCard project={p} variant="grid" index={i} />
+                </div>
+              ))}
+            </div>
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>

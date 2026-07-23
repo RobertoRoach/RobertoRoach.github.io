@@ -1,0 +1,36 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="404 · Signal lost" description="Page not found.">
+  <section
+    class="bg-radial-signal relative grid min-h-[92dvh] place-items-center overflow-hidden px-[var(--gutter)] py-32"
+  >
+    <div class="bg-grid absolute inset-0 opacity-60" aria-hidden="true"></div>
+    <div class="relative mx-auto max-w-3xl text-center">
+      <div class="mono-label mb-8 flex items-center justify-center gap-2.5 text-signal-400">
+        <span class="status-led"></span>ERR · 404 · Signal lost
+      </div>
+      <h1
+        class="mb-8 font-display text-[clamp(4rem,14vw,10rem)] font-extrabold leading-[0.88] tracking-tightest"
+      >
+        <em class="text-signal-gradient not-italic">Not</em>
+        <br />here.
+      </h1>
+      <p
+        class="mx-auto mb-10 max-w-xl font-display text-[clamp(1.15rem,2vw,1.4rem)] font-medium leading-[1.4] text-graphite-100"
+      >
+        The page you asked for isn't on this bench. Either it moved, or it never existed — either
+        way, let's route you somewhere useful.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <a href="/" class="btn btn-primary">
+          <span>Back to home</span>
+          <span aria-hidden="true">→</span>
+        </a>
+        <a href="/work/" class="btn">See work</a>
+        <a href="/contact/" class="btn">Contact</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,210 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { CATEGORIES } from "@/lib/site";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+const { project } = Astro.props;
+const { data } = project;
+const { Content } = await project.render();
+const category = CATEGORIES.find((c) => c.slug === data.category);
+
+// Ordered sections we render if present.
+const meta = [
+  { k: "Role", v: data.role },
+  { k: "Year", v: String(data.year) },
+  { k: "Status", v: data.status },
+  { k: "Category", v: category?.label ?? data.category },
+];
+if (data.collaborators.length) meta.push({ k: "With", v: data.collaborators.join(", ") });
+
+const chapters = [
+  { label: "Problem", body: data.problem },
+  { label: "Process", body: data.process },
+  { label: "Challenges", body: data.challenges },
+  { label: "Solution", body: data.solution },
+  { label: "Results", body: data.results },
+  { label: "Lessons", body: data.lessons },
+].filter((c) => c.body && c.body.trim().length > 0);
+---
+
+<BaseLayout title={data.title} description={data.summary} type="article">
+  <article>
+    {/* Hero */}
+    <header class="bg-radial-signal relative overflow-hidden px-[var(--gutter)] pt-36 md:pt-44">
+      <div class="bg-grid absolute inset-0 opacity-60" aria-hidden="true"></div>
+      <div class="relative mx-auto max-w-content">
+        <div
+          class="mb-8 flex flex-wrap items-center gap-3 font-mono text-[11px] uppercase tracking-widest text-graphite-300"
+        >
+          <a href="/work/" class="text-graphite-300 transition-colors hover:text-signal-400">
+            ← Work
+          </a>
+          <span>/</span>
+          {
+            category && (
+              <a
+                href={`/work/#${category.slug}`}
+                class="rounded-full border border-signal-500/40 bg-signal-500/10 px-2.5 py-1 text-signal-400 transition-colors hover:border-signal-500 hover:bg-signal-500/15"
+              >
+                {category.label}
+              </a>
+            )
+          }
+        </div>
+        <h1
+          class="mb-8 max-w-4xl font-display text-[clamp(2.6rem,7vw,6rem)] font-extrabold leading-[0.94] tracking-tightest"
+        >
+          {data.title}
+        </h1>
+        <p
+          class="mb-12 max-w-3xl font-display text-[clamp(1.2rem,2vw,1.55rem)] font-medium leading-[1.4] text-graphite-100"
+        >
+          {data.summary}
+        </p>
+
+        <dl class="grid grid-cols-2 gap-6 border-t border-graphite-800 pt-8 sm:grid-cols-4">
+          {
+            meta.map((m) => (
+              <div>
+                <dt class="mono-label mb-2 text-graphite-400">{m.k}</dt>
+                <dd class="font-display text-lg font-medium text-graphite-50">{m.v}</dd>
+              </div>
+            ))
+          }
+        </dl>
+        <div class="mt-14 pb-16"></div>
+      </div>
+    </header>
+
+    {/* Cover image (if present) */}
+    {
+      data.cover && (
+        <div class="px-[var(--gutter)] pb-16">
+          <div class="mx-auto max-w-content overflow-hidden rounded-2xl border border-graphite-800">
+            {"src" in (data.cover as object) ? (
+              <img
+                src={(data.cover as { src: string }).src}
+                alt={(data.cover as { alt: string }).alt ?? data.title}
+                class="w-full"
+                loading="lazy"
+              />
+            ) : null}
+          </div>
+        </div>
+      )
+    }
+
+    {/* Body */}
+    <div class="px-[var(--gutter)] pb-24">
+      <div class="mx-auto grid max-w-content grid-cols-1 gap-14 lg:grid-cols-[220px_1fr]">
+        {/* Sidebar meta */}
+        <aside class="lg:sticky lg:top-24 lg:self-start">
+          {
+            data.technologies.length > 0 && (
+              <div class="mb-8">
+                <div class="mono-label mb-3">Technologies</div>
+                <ul class="space-y-1.5">
+                  {data.technologies.map((t: string) => (
+                    <li class="text-sm text-graphite-100">{t}</li>
+                  ))}
+                </ul>
+              </div>
+            )
+          }
+          {
+            data.hardware.length > 0 && (
+              <div class="mb-8">
+                <div class="mono-label mb-3">Hardware</div>
+                <ul class="space-y-1.5">
+                  {data.hardware.map((h: string) => (
+                    <li class="text-sm text-graphite-100">{h}</li>
+                  ))}
+                </ul>
+              </div>
+            )
+          }
+          {
+            (data.liveUrl || data.githubUrl) && (
+              <div class="mb-8">
+                <div class="mono-label mb-3">Links</div>
+                <ul class="space-y-2">
+                  {data.liveUrl && (
+                    <li>
+                      <a
+                        href={data.liveUrl}
+                        class="text-sm text-signal-400 underline decoration-signal-500/40 underline-offset-4 hover:decoration-signal-400"
+                        rel="noopener"
+                        target="_blank"
+                      >
+                        Live →
+                      </a>
+                    </li>
+                  )}
+                  {data.githubUrl && (
+                    <li>
+                      <a
+                        href={data.githubUrl}
+                        class="text-sm text-signal-400 underline decoration-signal-500/40 underline-offset-4 hover:decoration-signal-400"
+                        rel="noopener"
+                        target="_blank"
+                      >
+                        GitHub →
+                      </a>
+                    </li>
+                  )}
+                </ul>
+              </div>
+            )
+          }
+        </aside>
+
+        {/* Chapters + MDX */}
+        <div class="max-w-none">
+          {
+            chapters.length > 0 && (
+              <div class="mb-16 space-y-12">
+                {chapters.map((c, i) => (
+                  <section>
+                    <div class="mono-label mb-3 text-signal-400">
+                      0{i + 1} · {c.label}
+                    </div>
+                    <p class="whitespace-pre-line text-[17px] leading-[1.75] text-graphite-100">
+                      {c.body}
+                    </p>
+                  </section>
+                ))}
+              </div>
+            )
+          }
+
+          <div
+            class="prose prose-invert max-w-none prose-headings:font-display prose-headings:font-bold prose-headings:tracking-tightest prose-h2:mb-4 prose-h2:mt-16 prose-h2:text-3xl prose-h3:mb-3 prose-h3:mt-10 prose-h3:text-xl prose-p:leading-[1.75] prose-p:text-graphite-100 prose-a:text-signal-400 prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-em:text-graphite-100 prose-code:rounded prose-code:bg-graphite-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-[0.9em] prose-code:text-signal-400 prose-code:before:content-none prose-code:after:content-none prose-li:text-graphite-100"
+          >
+            <Content />
+          </div>
+
+          <div class="mt-16 border-t border-graphite-800 pt-8">
+            <a
+              href="/work/"
+              class="inline-flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-signal-400 transition-colors hover:text-signal-300"
+            >
+              <span aria-hidden="true">←</span>
+              <span>All work</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

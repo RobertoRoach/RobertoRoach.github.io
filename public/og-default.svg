@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#08080A"/>
+      <stop offset="1" stop-color="#101015"/>
+    </linearGradient>
+    <linearGradient id="grad" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#F5F5F7"/>
+      <stop offset="0.55" stop-color="#FF6C5F"/>
+      <stop offset="1" stop-color="#DC1F13"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M 48 0 L 0 0 0 48" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- radial glow -->
+  <circle cx="1000" cy="120" r="360" fill="#FF3B2F" opacity="0.14"/>
+  <circle cx="120" cy="560" r="300" fill="#FF3B2F" opacity="0.08"/>
+
+  <!-- corner registration -->
+  <g stroke="rgba(255,255,255,0.28)" stroke-width="1.5" fill="none">
+    <path d="M 40 40 L 66 40 M 40 40 L 40 66"/>
+    <path d="M 1160 40 L 1134 40 M 1160 40 L 1160 66"/>
+    <path d="M 40 590 L 66 590 M 40 590 L 40 564"/>
+    <path d="M 1160 590 L 1134 590 M 1160 590 L 1160 564"/>
+  </g>
+
+  <!-- meta -->
+  <text x="60" y="80" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="18" letter-spacing="4" fill="#8A8A96">R.R / 01 · SYSTEM ONLINE</text>
+  <text x="1140" y="80" text-anchor="end" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="18" letter-spacing="4" fill="#8A8A96">HOUSTON, TX</text>
+
+  <!-- title -->
+  <text x="60" y="290" font-family="'Bricolage Grotesque', ui-sans-serif, sans-serif" font-weight="800" font-size="140" letter-spacing="-6" fill="url(#grad)">Roberto Roach.</text>
+  <text x="60" y="380" font-family="'Bricolage Grotesque', ui-sans-serif, sans-serif" font-weight="500" font-size="42" fill="#DEDEE3" letter-spacing="-1">Engineer · Founder · Coach.</text>
+  <text x="60" y="430" font-family="'Bricolage Grotesque', ui-sans-serif, sans-serif" font-weight="500" font-size="32" fill="#8A8A96">Building systems that move, think, and connect.</text>
+
+  <!-- bottom strip -->
+  <line x1="60" y1="530" x2="1140" y2="530" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+  <text x="60" y="576" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="18" letter-spacing="4" fill="#FF6C5F">RAR TECHNOLOGIES</text>
+  <text x="330" y="576" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="18" letter-spacing="4" fill="#8A8A96">REPAIR · WEB · ADVERTISING</text>
+  <text x="1140" y="576" text-anchor="end" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="18" letter-spacing="4" fill="#8A8A96">robertoroach.github.io</text>
+</svg>

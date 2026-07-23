@@ -1,0 +1,47 @@
+{
+  "name": "robertoroach.github.io",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Roberto Roach — portfolio, RAR Technologies studio, robotics + electrical engineering work.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "check": "astro check",
+    "format": "prettier --write \"**/*.{astro,ts,tsx,js,mjs,json,md,mdx,css}\"",
+    "format:check": "prettier --check \"**/*.{astro,ts,tsx,js,mjs,json,md,mdx,css}\"",
+    "lint": "eslint . --ext .js,.mjs,.ts,.tsx,.astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.0.3",
+    "@astrojs/react": "^4.1.2",
+    "@astrojs/sitemap": "^3.2.1",
+    "@astrojs/tailwind": "^5.1.4",
+    "@tailwindcss/typography": "^0.5.15",
+    "astro": "^5.1.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^3.4.17"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@typescript-eslint/eslint-plugin": "^8.19.0",
+    "@typescript-eslint/parser": "^8.19.0",
+    "eslint": "^9.17.0",
+    "eslint-plugin-astro": "^1.3.1",
+    "prettier": "^3.4.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.6.9",
+    "typescript": "^5.7.2"
+  },
+  "allowScripts": {
+    "esbuild@0.27.7": true,
+    "esbuild@0.25.12": true,
+    "sharp@0.34.5": true
+  }
+}
