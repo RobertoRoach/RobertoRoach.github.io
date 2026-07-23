@@ -1,0 +1,132 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { CATEGORIES } from "@/lib/site";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+  variant?: "featured" | "grid";
+  index?: number;
+}
+const { project, variant = "grid", index = 0 } = Astro.props;
+const data = project.data;
+const category = CATEGORIES.find((c) => c.slug === data.category);
+const href = `/work/${project.slug}/`;
+const codeLabel = `P.${String(index + 1).padStart(2, "0")}`;
+
+const coverSrc =
+  data.cover && typeof data.cover === "object" && "src" in data.cover
+    ? (data.cover as { src: string }).src
+    : null;
+const coverAlt =
+  data.cover && typeof data.cover === "object" && "alt" in data.cover
+    ? (data.cover as { alt: string }).alt
+    : data.title;
+---
+
+{
+  variant === "featured" ? (
+    <article class="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
+      <a
+        href={href}
+        class="card-hover group relative block aspect-[5/4] overflow-hidden border border-graphite-800 bg-graphite-800"
+      >
+        {coverSrc ? (
+          <img
+            src={coverSrc}
+            alt={coverAlt}
+            loading="lazy"
+            class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+          />
+        ) : (
+          <div class="absolute inset-0 grid place-items-center bg-graphite-800 p-8 text-center">
+            <div>
+              <div class="mono-label mb-3 text-signal-500">{codeLabel}</div>
+              <div class="font-display text-[clamp(1.6rem,3vw,2.4rem)] font-bold leading-[1.02] tracking-tightest text-graphite-100">
+                {data.title}
+              </div>
+            </div>
+          </div>
+        )}
+        <span
+          class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-signal-500/70 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+          aria-hidden="true"
+        />
+        <span
+          class="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-signal-500/70 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+          aria-hidden="true"
+        />
+      </a>
+
+      <div>
+        <div class="mb-5 flex flex-wrap items-center gap-3 font-mono text-[11px] uppercase tracking-widest">
+          <span class="border border-signal-500/50 bg-signal-500/10 px-2.5 py-1 text-signal-500">
+            {codeLabel}
+          </span>
+          <span class="text-graphite-400">·</span>
+          <span class="text-graphite-300">{data.year}</span>
+          {category && (
+            <>
+              <span class="text-graphite-400">·</span>
+              <span class="text-graphite-100">{category.label}</span>
+            </>
+          )}
+        </div>
+        <h3 class="mb-3 font-display text-[clamp(2rem,3.6vw,3.2rem)] font-bold leading-[1.02] tracking-tightest">
+          <a href={href} class="transition-colors hover:text-signal-400">
+            {data.title}
+          </a>
+        </h3>
+        <div class="mb-6 font-mono text-xs uppercase tracking-widest text-graphite-300">
+          {data.role}
+        </div>
+        <p class="mb-7 max-w-[52ch] text-[17px] leading-[1.7] text-graphite-100">{data.summary}</p>
+        <div class="flex flex-wrap gap-2">
+          {data.technologies.slice(0, 4).map((t: string) => (
+            <span class="border border-graphite-700 bg-graphite-800 px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider text-graphite-200">
+              {t}
+            </span>
+          ))}
+          {data.hardware.slice(0, 3).map((h: string) => (
+            <span class="border border-graphite-700 bg-graphite-800/60 px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider text-graphite-300">
+              {h}
+            </span>
+          ))}
+        </div>
+        <div class="mt-8">
+          <a
+            href={href}
+            class="inline-flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-signal-500 transition-colors hover:text-signal-400"
+          >
+            <span>Read case study</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </article>
+  ) : (
+    <a
+      href={href}
+      class="card-hover group relative flex h-full flex-col gap-3 border border-graphite-800 bg-graphite-800 p-6 md:p-7"
+    >
+      <div class="flex items-center justify-between font-mono text-[11px] uppercase tracking-widest text-graphite-300">
+        <span class="border border-graphite-700 bg-graphite-800/60 px-2 py-0.5 text-graphite-100">
+          {codeLabel}
+        </span>
+        <span>{category?.short ?? data.category}</span>
+      </div>
+      <h3 class="font-display text-[1.6rem] font-bold leading-tight tracking-tight text-graphite-50 transition-colors group-hover:text-signal-400">
+        {data.title}
+      </h3>
+      <p class="text-[15px] leading-[1.65] text-graphite-200">{data.summary}</p>
+      <div class="mt-auto flex items-center gap-2 pt-3 font-mono text-[10px] uppercase tracking-widest text-graphite-300">
+        <span>{data.year}</span>
+        <span>·</span>
+        <span>{data.role.split("—")[0].trim().split("·")[0].trim()}</span>
+      </div>
+      <span
+        class="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-signal-500/70 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        aria-hidden="true"
+      />
+    </a>
+  )
+}

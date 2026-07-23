@@ -1,0 +1,81 @@
+---
+import { NAV_ITEMS, SITE } from "@/lib/site";
+
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) => {
+  if (href === "/") return currentPath === "/";
+  return currentPath.startsWith(href);
+};
+---
+
+<nav
+  id="nav"
+  aria-label="Primary"
+  class="fixed inset-x-0 top-0 z-50 flex items-center justify-between gap-4 border-b border-transparent bg-graphite-950/60 px-[var(--gutter)] py-3.5 backdrop-blur-xl transition-colors duration-300 supports-[backdrop-filter]:bg-graphite-950/50"
+>
+  <a
+    href="/"
+    class="group flex items-center gap-3 text-xs uppercase tracking-widest text-graphite-100"
+    aria-label={`${SITE.name} — home`}
+  >
+    <span
+      aria-hidden="true"
+      class="grid h-8 w-8 place-items-center rounded-lg bg-signal-500 font-display text-[15px] font-extrabold text-graphite-950 shadow-signal"
+      >R</span
+    >
+    <span class="font-mono">{SITE.name}</span>
+    <span class="hidden h-4 w-px bg-graphite-600 sm:inline-block" aria-hidden="true"></span>
+    <span
+      class="hidden items-center gap-2 font-mono text-[11px] text-graphite-300 sm:inline-flex"
+      aria-live="polite"
+    >
+      <span class="status-led"></span>
+      <span>Online</span>
+    </span>
+  </a>
+
+  <div class="flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest">
+    {
+      NAV_ITEMS.filter((n) => n.href !== "/contact/").map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            "hidden rounded-full px-3 py-2 transition-colors sm:inline-block",
+            isActive(item.href)
+              ? "text-graphite-50"
+              : "text-graphite-300 hover:bg-white/5 hover:text-graphite-50",
+          ]}
+          aria-current={isActive(item.href) ? "page" : undefined}
+        >
+          {item.label}
+        </a>
+      ))
+    }
+    <a
+      href="/contact/"
+      class:list={[
+        "inline-flex items-center gap-2 rounded-full px-4 py-2 font-medium transition-transform",
+        isActive("/contact/")
+          ? "bg-graphite-50 text-graphite-950"
+          : "bg-signal-500 text-graphite-950 shadow-signal hover:shadow-signal-strong",
+      ]}
+    >
+      <span>Get in touch</span>
+    </a>
+  </div>
+</nav>
+
+<script>
+  const el = document.getElementById("nav");
+  if (el) {
+    const onScroll = () => {
+      if (window.scrollY > 24) {
+        el.classList.add("border-graphite-800/80", "bg-graphite-950/85");
+      } else {
+        el.classList.remove("border-graphite-800/80", "bg-graphite-950/85");
+      }
+    };
+    document.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+</script>
